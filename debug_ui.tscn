@@ -1,0 +1,33 @@
+[gd_scene load_steps=2 format=3 uid="uid://dx36xgy83f8vw"]
+
+[ext_resource type="Script" path="res://DebugUI.gd" id="1_c7264"]
+
+[node name="DebugUI" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_c7264")
+
+[node name="GridContainer" type="GridContainer" parent="."]
+layout_direction = 2
+layout_mode = 0
+offset_left = 9.0
+offset_top = 11.0
+offset_right = 334.0
+offset_bottom = 52.0
+columns = 2
+
+[node name="SpawnPlayer" type="Button" parent="GridContainer"]
+layout_mode = 2
+text = "Spawn Player Item
+"
+
+[node name="SpawnEnemy" type="Button" parent="GridContainer"]
+layout_mode = 2
+text = "Spawn Enemy Item"
+
+[connection signal="pressed" from="GridContainer/SpawnPlayer" to="." method="_on_spawn_player_pressed"]
+[connection signal="pressed" from="GridContainer/SpawnEnemy" to="." method="_on_spawn_enemy_pressed"]

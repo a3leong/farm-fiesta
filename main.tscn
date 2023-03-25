@@ -1,0 +1,46 @@
+[gd_scene load_steps=5 format=3 uid="uid://5q66aq7drmyb"]
+
+[ext_resource type="PackedScene" uid="uid://dx36xgy83f8vw" path="res://debug_ui.tscn" id="1_3ksjr"]
+[ext_resource type="Script" path="res://main.gd" id="1_rkl1y"]
+[ext_resource type="PackedScene" uid="uid://cirtpldmcume5" path="res://carrotman.tscn" id="2_2g0ho"]
+[ext_resource type="PackedScene" uid="uid://e8v8q0rxnox8" path="res://farmer.tscn" id="4_2eqrv"]
+
+[node name="Main" type="Node2D"]
+script = ExtResource("1_rkl1y")
+carrotmanScene = ExtResource("2_2g0ho")
+enemySpawnSpeed = 0.01
+
+[node name="EnemyFarmerPickTimer" type="Timer" parent="."]
+
+[node name="Background" type="ColorRect" parent="."]
+offset_right = 640.0
+offset_bottom = 360.0
+color = Color(0.980392, 0.615686, 0.517647, 1)
+metadata/_edit_use_anchors_ = true
+
+[node name="Ground" type="ColorRect" parent="."]
+offset_left = -1.0
+offset_top = 309.0
+offset_right = 654.0
+offset_bottom = 403.0
+color = Color(0, 0.721569, 0.501961, 1)
+
+[node name="PlayerUnitSpawnPosition" type="Marker2D" parent="."]
+position = Vector2(120, 308)
+
+[node name="EnemyUnitSpawnPosition" type="Marker2D" parent="."]
+position = Vector2(509, 308)
+
+[node name="DebugUI" parent="." instance=ExtResource("1_3ksjr")]
+
+[node name="Farmer" parent="." instance=ExtResource("4_2eqrv")]
+position = Vector2(70, 261)
+
+[node name="EnemyFarmer" parent="." instance=ExtResource("4_2eqrv")]
+modulate = Color(0.972549, 0, 0.129412, 1)
+position = Vector2(575, 261)
+isEnemy = true
+
+[connection signal="timeout" from="EnemyFarmerPickTimer" to="." method="_on_enemy_farmer_pick_timer_timeout"]
+[connection signal="debugSpawnEnemyUnit" from="DebugUI" to="." method="_on_debug_ui_debug_spawn_enemy_unit"]
+[connection signal="debugSpawnPlayerUnit" from="DebugUI" to="." method="_on_debug_ui_debug_spawn_player_unit"]
