@@ -1,10 +1,13 @@
-extends Node2D
+extends RigidBody2D
 
 class_name Unit
 
 @export var speed = 100
 @export var health = 1
 @export var damage = 1
+@export var spawn_throw_force = Vector2(100, 400)
+@export var spawn_throw_variance_y = 300
+@export var spawn_throw_variance_x = 50
 
 
 enum {PLAYER,ENEMY}
@@ -21,10 +24,16 @@ func init(unitOwnerValue, spawnPosition):
 	if unitOwner == ENEMY:
 		speed = -speed # go backwards
 		$AnimatedSprite2D.flip_h = true
-		set_modulate(Color(248, 0, 33))
+		set_modulate(Color(255, 200, 225))
 
 func _ready():
-	print("Unit ready")
+	var xForce = spawn_throw_force.x + randi() % spawn_throw_variance_x
+	if unitOwner == ENEMY:
+		xForce = -xForce
+	var yForce = spawn_throw_force.y + randi() % spawn_throw_variance_y
+	print("xForce " + str(xForce) + " yForce " + str(yForce))
+	set_linear_velocity(Vector2(-xForce, -yForce))
+	$CollisionShape2D.disabled = true # Until hits ground don't hit other units
 	
 
 func _process(delta):
