@@ -32,6 +32,11 @@ pick_item={
 ]
 }
 
+[layer_names]
+
+2d_physics/layer_1="Units"
+2d_physics/layer_2="Ground"
+
 [rendering]
 
 renderer/rendering_method="gl_compatibility"

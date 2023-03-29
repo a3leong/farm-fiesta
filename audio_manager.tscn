@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://c6lmx45nhktp"]
+
+[ext_resource type="Script" path="res://audio_manager.gd" id="1_1w7ob"]
+[ext_resource type="AudioStream" uid="uid://dvl23e74eat5j" path="res://assets/audio/pluck_up.ogg" id="2_uh5dy"]
+
+[node name="AudioManager" type="Node"]
+script = ExtResource("1_1w7ob")
+
+[node name="PluckUp" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_uh5dy")

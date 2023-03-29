@@ -5,10 +5,6 @@ class_name Unit
 @export var speed = 100
 @export var health = 1
 @export var damage = 1
-@export var spawn_throw_force = Vector2(100, 400)
-@export var spawn_throw_variance_y = 300
-@export var spawn_throw_variance_x = 50
-
 
 enum {PLAYER,ENEMY}
 
@@ -18,23 +14,14 @@ var unitOwner = -1 # needs to be set, -1 to prevent crashing
 var isMoving = false
 var isHittible = true
 
-func init(unitOwnerValue, spawnPosition):
+func init(unitOwnerValue, spawnPosition, thrownForce: Vector2):
 	unitOwner = unitOwnerValue
 	position = spawnPosition
 	if unitOwner == ENEMY:
 		speed = -speed # go backwards
 		$AnimatedSprite2D.flip_h = true
 		set_modulate(Color(255, 200, 225))
-
-func _ready():
-	var xForce = spawn_throw_force.x + randi() % spawn_throw_variance_x
-	if unitOwner == ENEMY:
-		xForce = -xForce
-	var yForce = spawn_throw_force.y + randi() % spawn_throw_variance_y
-	print("xForce " + str(xForce) + " yForce " + str(yForce))
-	set_linear_velocity(Vector2(-xForce, -yForce))
-	$CollisionShape2D.disabled = true # Until hits ground don't hit other units
-	
+	set_linear_velocity(Vector2(-thrownForce.x if unitOwnerValue == PLAYER else thrownForce.x, -thrownForce.y))
 
 func _process(delta):
 	if isMoving:
@@ -63,8 +50,17 @@ func onDie():
 	queue_free()
 
 
+# TODO: Probably need to add a parent node that controls and manages a rigidbody and an area2d
+# TODO: This is currently on used because of change to physics 2d
+# TODO: differentiate between enemy unit collision, ground collision, ignore team collision
 func _on_area_entered(area):
+	print("on area entered")
 	# Check for opposing unit collision otherwise ignore
 	if (area.get_scene_file_path() == get_scene_file_path() && area.unitOwner != unitOwner): # This should check for same scene type (name will be unique)
 		print(area.unitOwner)
 		onCollide()
+
+
+
+func _on_body_entered(body):
+	print("on body entered carrot")
