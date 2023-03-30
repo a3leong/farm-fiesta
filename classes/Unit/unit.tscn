@@ -1,0 +1,14 @@
+[gd_scene load_steps=4 format=3 uid="uid://c1cm7khls3r1w"]
+
+[ext_resource type="Script" path="res://classes/Unit/unit.gd" id="1_rlpls"]
+[ext_resource type="PackedScene" uid="uid://d2w0bnyplubyx" path="res://classes/Unit/unit_state_walking.tscn" id="2_gjb8v"]
+[ext_resource type="PackedScene" uid="uid://c3bqe2ckst7tx" path="res://classes/Unit/unit_state_pluck.tscn" id="3_uhy6d"]
+
+[node name="Unit" type="Node2D"]
+script = ExtResource("1_rlpls")
+
+[node name="UnitStateWalking" parent="." instance=ExtResource("2_gjb8v")]
+
+[node name="UnitStatePluck" parent="." instance=ExtResource("3_uhy6d")]
+
+[connection signal="bounced_twice" from="UnitStatePluck" to="." method="_on_unit_state_pluck_bounced_twice"]

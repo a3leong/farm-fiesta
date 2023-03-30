@@ -1,5 +1,5 @@
 extends Node
 
-func pluckUp(pitchScale):
+func pluck_up(pitchScale):
 	$PluckUp.set_pitch_scale(pitchScale)
 	$PluckUp.play()
