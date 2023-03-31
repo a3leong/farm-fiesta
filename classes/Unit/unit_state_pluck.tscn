@@ -71,8 +71,8 @@ contact_monitor = true
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="RigidBody2D"]
 scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_pg68l")
-frame = 3
-frame_progress = 0.173967
+frame = 2
+frame_progress = 0.160667
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D"]
 position = Vector2(1.5, 0.5)

@@ -11,4 +11,5 @@ script = ExtResource("1_rlpls")
 
 [node name="UnitStatePluck" parent="." instance=ExtResource("3_uhy6d")]
 
+[connection signal="unit_collision" from="UnitStateWalking" to="." method="_on_unit_state_walking_unit_collision"]
 [connection signal="bounced_twice" from="UnitStatePluck" to="." method="_on_unit_state_pluck_bounced_twice"]

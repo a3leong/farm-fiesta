@@ -1,6 +1,8 @@
 extends Node2D
 
 @export var speed = 100
+var floorHeight = 48
+signal unitCollide
 
 ## A unit wrapper for managing and handling multiple states of a single unit
 ##
@@ -17,6 +19,11 @@ var unitOwner: int = UnitOwnerEnum.PLAYER
 func init(initOwner: int):
 	$UnitStateWalking.init(initOwner)
 	$UnitStatePluck.init(initOwner)
+
+## _die()
+## Play death animation for unit then clean up memory
+func _die():
+	queue_free()
 
 ## _get_current_position()
 ##
@@ -76,4 +83,11 @@ func _set_state_pluck(currentPos: Vector2):
 
 
 func _on_unit_state_pluck_bounced_twice(globalPosition: Vector2):
-	set_state(UnitStateEnum.WALKING, globalPosition)
+	# We only want the x position, course correct so carrot is actually walking on the ground
+	var floorHeightPos = ProjectSettings.get_setting("display/window/size/viewport_height") - floorHeight
+	set_state(UnitStateEnum.WALKING, Vector2(globalPosition.x, floorHeightPos))
+
+
+func _on_unit_state_walking_unit_collision(ownedUnit: Area2D, enemyUnit: Area2D):
+	unitCollide.emit(ownedUnit, enemyUnit)
+	_die()

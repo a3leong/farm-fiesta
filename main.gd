@@ -47,8 +47,13 @@ func _input(event):
 #	add_child(spawnedUnit)
 
 
+func _on_unit_collide(playerUnit: Area2D, enemyUnit: Area2D):
+	print("on unit collide signal")
+	
 func spawn_unit(unitOwner):
 	var spawnedUnit = unitScene.instantiate()
+	spawnedUnit.unitCollide.connect(_on_unit_collide)
+	
 	var startPosition
 	if unitOwner == UnitOwnerEnum.PLAYER: 
 		startPosition = $PlayerUnitSpawnPosition.position
