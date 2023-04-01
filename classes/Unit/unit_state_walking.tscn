@@ -122,7 +122,7 @@ script = ExtResource("2_q1oxw")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Area2D"]
 sprite_frames = SubResource("SpriteFrames_opyln")
 animation = &"paper"
-frame_progress = 0.942977
+frame_progress = 0.689984
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 visible = false

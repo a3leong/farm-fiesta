@@ -8,7 +8,7 @@ var unit_type
 
 signal unit_collision
 
-# TODO: Make the Area2D new scenes with interchangibility
+# TODO: Make the Area2D new scenes with interchangibility since there's most likely going to be less units than skins later on
 
 # System called on script init
 func _init():
