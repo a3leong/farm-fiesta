@@ -1,5 +1,5 @@
 class_name UnitStateEnum
-enum {
+enum VALUES {
 	NONE,
 	WALKING,
 	PLUCK

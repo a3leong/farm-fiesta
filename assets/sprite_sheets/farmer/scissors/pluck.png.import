@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://dqfu4nci5q3o"
-path="res://.godot/imported/carrot-spin-sheet.png-0653672512e7141e99e7dcefb14a1e22.ctex"
+path="res://.godot/imported/pluck.png-ab7d4afc13b832aa97e948c718d16bdb.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/carrot-spin-sheet.png"
-dest_files=["res://.godot/imported/carrot-spin-sheet.png-0653672512e7141e99e7dcefb14a1e22.ctex"]
+source_file="res://assets/sprite_sheets/farmer/scissors/pluck.png"
+dest_files=["res://.godot/imported/pluck.png-ab7d4afc13b832aa97e948c718d16bdb.ctex"]
 
 [params]
 

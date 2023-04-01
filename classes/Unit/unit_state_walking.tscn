@@ -1,23 +1,23 @@
-[gd_scene load_steps=10 format=3 uid="uid://d2w0bnyplubyx"]
+[gd_scene load_steps=10 format=3 uid="uid://dhxr22ekp6ckp"]
 
 [ext_resource type="Script" path="res://classes/Unit/unit_state_walking.gd" id="1_28cq0"]
-[ext_resource type="Texture2D" uid="uid://conmcqk5yptos" path="res://assets/carrot-walk-Sheet.png" id="2_2e1u8"]
 [ext_resource type="Script" path="res://classes/Unit/unit_state_walking_area2d.gd" id="2_q1oxw"]
+[ext_resource type="Texture2D" uid="uid://conmcqk5yptos" path="res://assets/sprite_sheets/farmer/scissors/walking.png" id="3_cwwsl"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_mk376"]
-atlas = ExtResource("2_2e1u8")
+atlas = ExtResource("3_cwwsl")
 region = Rect2(0, 0, 24, 24)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_n81bs"]
-atlas = ExtResource("2_2e1u8")
+atlas = ExtResource("3_cwwsl")
 region = Rect2(24, 0, 24, 24)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_741td"]
-atlas = ExtResource("2_2e1u8")
+atlas = ExtResource("3_cwwsl")
 region = Rect2(48, 0, 24, 24)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_nwutf"]
-atlas = ExtResource("2_2e1u8")
+atlas = ExtResource("3_cwwsl")
 region = Rect2(72, 0, 24, 24)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_opyln"]

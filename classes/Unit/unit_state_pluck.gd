@@ -6,16 +6,18 @@ signal bounced_twice
 
 var bounceCount = 0
 var emitted = false
-var unitOwner
+var unit_owner
+var unit_type
 
 # System called on script init
 func _init():
 	set_as_inactive_state()
 
 # Dev called init function
-func init(initOwner):
-	unitOwner = initOwner
-	if unitOwner == UnitOwnerEnum.ENEMY:
+func init(init_owner, init_type):
+	unit_owner = init_owner
+	unit_type = init_type
+	if unit_owner == UnitOwnerEnum.VALUES.ENEMY:
 		set_modulate(Color(255, 0, 0))
 
 func set_as_active_state(curPos: Vector2):
@@ -27,14 +29,14 @@ func set_as_inactive_state():
 	hide()
 	call_deferred("set_process_mode", ProcessMode.PROCESS_MODE_DISABLED)
 
-func start_pluck(unitOwnerValue, thrownForce: Vector2):
+func start_pluck(unit_owner_value, thrown_force: Vector2):
 	$RigidBody2D/AnimatedSprite2D.play("default")
 	
-	if unitOwnerValue == ENEMY:
+	if unit_owner_value == ENEMY:
 		$RigidBody2D/AnimatedSprite2D.set_flip_h(true)
 	
-	unitOwner = unitOwnerValue
-	$RigidBody2D.set_linear_velocity(Vector2(-thrownForce.x if unitOwnerValue == PLAYER else thrownForce.x, -thrownForce.y))
+	unit_owner = unit_owner_value
+	$RigidBody2D.set_linear_velocity(Vector2(-thrown_force.x if unit_owner_value == PLAYER else thrown_force.x, -thrown_force.y))
 
 func _on_rigid_body_2d_body_entered(body):
 	if body.name == "Ground":

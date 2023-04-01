@@ -1,8 +1,8 @@
-[gd_scene load_steps=24 format=3 uid="uid://3os4fnp5uhpe"]
+[gd_scene load_steps=24 format=3]
 
 [ext_resource type="Script" path="res://classes/Unit/carrotman.gd" id="1_gryj4"]
 [ext_resource type="Texture2D" uid="uid://cnf75xpg6rkw" path="res://assets/carrot-Sheet-Sheet.png" id="2_frsh3"]
-[ext_resource type="Texture2D" uid="uid://dqfu4nci5q3o" path="res://assets/carrot-spin-sheet.png" id="3_r8nm4"]
+[ext_resource type="Texture2D" uid="uid://dqfu4nci5q3o" path="res://assets/sprite_sheets/farmer/scissors/pluck.png" id="3_r8nm4"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_uslyc"]
 rough = true

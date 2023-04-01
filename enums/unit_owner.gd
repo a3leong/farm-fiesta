@@ -1,5 +1,5 @@
 class_name UnitOwnerEnum
-enum {
+enum VALUES {
 	PLAYER,
 	ENEMY
 }

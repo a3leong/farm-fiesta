@@ -1,33 +1,33 @@
-[gd_scene load_steps=12 format=3 uid="uid://c3bqe2ckst7tx"]
+[gd_scene load_steps=12 format=3 uid="uid://jrseyta66pwc"]
 
-[ext_resource type="Texture2D" uid="uid://dqfu4nci5q3o" path="res://assets/carrot-spin-sheet.png" id="1_8f1ur"]
 [ext_resource type="Script" path="res://classes/Unit/unit_state_pluck.gd" id="1_ajuvx"]
+[ext_resource type="Texture2D" uid="uid://dqfu4nci5q3o" path="res://assets/sprite_sheets/farmer/scissors/pluck.png" id="2_pfpae"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_8swnn"]
 bounce = 0.68
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_eal82"]
-atlas = ExtResource("1_8f1ur")
+atlas = ExtResource("2_pfpae")
 region = Rect2(0, 0, 24, 24)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_twjy0"]
-atlas = ExtResource("1_8f1ur")
+atlas = ExtResource("2_pfpae")
 region = Rect2(24, 0, 24, 24)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_3gmy1"]
-atlas = ExtResource("1_8f1ur")
+atlas = ExtResource("2_pfpae")
 region = Rect2(48, 0, 24, 24)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_qs8s8"]
-atlas = ExtResource("1_8f1ur")
+atlas = ExtResource("2_pfpae")
 region = Rect2(72, 0, 24, 24)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_6lqhc"]
-atlas = ExtResource("1_8f1ur")
+atlas = ExtResource("2_pfpae")
 region = Rect2(96, 0, 24, 24)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ylr3j"]
-atlas = ExtResource("1_8f1ur")
+atlas = ExtResource("2_pfpae")
 region = Rect2(120, 0, 24, 24)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_pg68l"]

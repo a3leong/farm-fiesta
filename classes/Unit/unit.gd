@@ -12,13 +12,17 @@ signal unitCollide
 ## @tutorial:            http://the/tutorial1/url.com
 ## @tutorial(Tutorial2): http://the/tutorial2/url.com
 
-# TODO: Actually figure out how to explicit the enum from another class
-var activeState: int = UnitStateEnum.NONE # No init state to keep it explicit
-var unitOwner: int = UnitOwnerEnum.PLAYER
+# TODO: Actually figure out how to explicit the enum from another class (probably named?)
+var active_state: UnitStateEnum.VALUES = UnitStateEnum.VALUES.NONE # No init state to keep it explicit
+var unit_owner: UnitOwnerEnum.VALUES = UnitOwnerEnum.VALUES.PLAYER
 
-func init(initOwner: int):
-	$UnitStateWalking.init(initOwner)
-	$UnitStatePluck.init(initOwner)
+var unit_type
+
+func init(init_owner: UnitOwnerEnum.VALUES, init_type: UnitTypeEnum.VALUES):
+	unit_owner = init_owner
+	unit_type = init_type
+	$UnitStateWalking.init(init_owner, init_type)
+	$UnitStatePluck.init(init_owner, init_type)
 
 ## _die()
 ## Play death animation for unit then clean up memory
@@ -31,10 +35,10 @@ func _die():
 ## TODO: I don't think this should apply to this case but special case needs to be made to
 ## actually set the position on a rigidbody2D after it's been spawned
 func _get_current_position() -> Vector2:
-	match(activeState):
-		UnitStateEnum.WALKING:
+	match(active_state):
+		UnitStateEnum.VALUES.WALKING:
 			return $UnitStateWalking.position
-		UnitStateEnum.PLUCK:
+		UnitStateEnum.VALUES.PLUCK:
 			return $UnitStatePluck/RigidBody2D.position
 	
 	print("No matching state found!")
@@ -42,22 +46,22 @@ func _get_current_position() -> Vector2:
 ## set_state()
 ##
 ## Abstraction layer for setting active unit state
-func set_state(state: int, currentPos: Vector2):
-	activeState = state
+func set_state(state: UnitStateEnum.VALUES, currentPos: Vector2):
+	active_state = state
 	match(state):
-		UnitStateEnum.WALKING:
+		UnitStateEnum.VALUES.WALKING:
 			_set_state_walking(currentPos)
-		UnitStateEnum.PLUCK:
+		UnitStateEnum.VALUES.PLUCK:
 			_set_state_pluck(currentPos)
 			
 ## call_state()
 ##
 ## Abstraction fn for calling a function with args for a unit state
-func call_state(state: int, method: String, args: Array):
+func call_state(state: UnitStateEnum.VALUES, method: String, args: Array):
 	match(state):
-		UnitStateEnum.WALKING:
+		UnitStateEnum.VALUES.WALKING:
 			$UnitStateWalking.callv(method, args)
-		UnitStateEnum.PLUCK:
+		UnitStateEnum.VALUES.PLUCK:
 			$UnitStatePluck.callv(method, args)
 	
 ## _hidStates()
@@ -65,19 +69,19 @@ func call_state(state: int, method: String, args: Array):
 ##
 ## exceptions -- State names to exclude in hiding
 func _hide_states(exceptions: Dictionary):
-	if !exceptions.has(UnitStateEnum.WALKING):
+	if !exceptions.has(UnitStateEnum.VALUES.WALKING):
 		$UnitStateWalking.set_as_inactive_state()
-	if !exceptions.has(UnitStateEnum.PLUCK):
+	if !exceptions.has(UnitStateEnum.VALUES.PLUCK):
 		$UnitStatePluck.set_as_inactive_state()
 
 func _set_state_walking(currentPos: Vector2):
-	_hide_states({ UnitStateEnum.WALKING: true })
+	_hide_states({ UnitStateEnum.VALUES.WALKING: true })
 	var positionToSet = currentPos if currentPos else _get_current_position()
 	$UnitStateWalking.set_as_active_state(positionToSet)
 	$UnitStateWalking.start_walk()
 
 func _set_state_pluck(currentPos: Vector2):
-	_hide_states({ UnitStateEnum.PLUCK: true })
+	_hide_states({ UnitStateEnum.VALUES.PLUCK: true })
 	var positionToSet = currentPos if currentPos else _get_current_position()
 	$UnitStatePluck.set_as_active_state(positionToSet)
 
@@ -85,9 +89,13 @@ func _set_state_pluck(currentPos: Vector2):
 func _on_unit_state_pluck_bounced_twice(globalPosition: Vector2):
 	# We only want the x position, course correct so carrot is actually walking on the ground
 	var floorHeightPos = ProjectSettings.get_setting("display/window/size/viewport_height") - floorHeight
-	set_state(UnitStateEnum.WALKING, Vector2(globalPosition.x, floorHeightPos))
+	set_state(UnitStateEnum.VALUES.WALKING, Vector2(globalPosition.x, floorHeightPos))
 
 
-func _on_unit_state_walking_unit_collision(ownedUnit: Area2D, enemyUnit: Area2D):
-	unitCollide.emit(ownedUnit, enemyUnit)
-	_die()
+func _on_unit_state_walking_unit_collision(owned_unit: Area2D, enemy_unit: Area2D):
+	var fight_result = UnitTypeEnum.unit_matchup_results(owned_unit.unit_type, enemy_unit.unit_type)
+	if owned_unit.unit_owner == UnitOwnerEnum.VALUES.PLAYER:
+		unitCollide.emit(fight_result)
+	# 1 means win, 0 and -1 means die
+	if fight_result < 1:	
+		_die()

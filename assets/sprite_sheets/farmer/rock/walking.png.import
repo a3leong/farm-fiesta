@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://conmcqk5yptos"
-path="res://.godot/imported/carrot-walk-Sheet.png-e397017bad7f6ad5acc5d3168a8caa02.ctex"
+uid="uid://c3wpppvogaxwf"
+path="res://.godot/imported/walking.png-2e4b0963eb665df404ce7ada050b3f17.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/carrot-walk-Sheet.png"
-dest_files=["res://.godot/imported/carrot-walk-Sheet.png-e397017bad7f6ad5acc5d3168a8caa02.ctex"]
+source_file="res://assets/sprite_sheets/farmer/rock/walking.png"
+dest_files=["res://.godot/imported/walking.png-2e4b0963eb665df404ce7ada050b3f17.ctex"]
 
 [params]
 

@@ -1,0 +1,20 @@
+{
+	"farmer": {
+		"rock": {
+		},
+		"paper": {
+			"sprites": {
+				"pluck": "",
+				"walking": "",
+				"die": ""
+			}
+		},
+		"scissors": {
+			"sprites": {
+				"pluck": "",
+				"walking": "",
+				"die": ""
+			}
+		}
+	}
+}

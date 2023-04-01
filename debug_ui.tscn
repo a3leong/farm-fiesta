@@ -29,5 +29,13 @@ text = "Spawn Player Item
 layout_mode = 2
 text = "Spawn Enemy Item"
 
+[node name="PlayerPts" type="Label" parent="GridContainer"]
+layout_mode = 2
+text = "Player pts: 0"
+
+[node name="EnemyPts" type="Label" parent="GridContainer"]
+layout_mode = 2
+text = "Enemy pts: 0"
+
 [connection signal="pressed" from="GridContainer/SpawnPlayer" to="." method="_on_spawn_player_pressed"]
 [connection signal="pressed" from="GridContainer/SpawnEnemy" to="." method="_on_spawn_enemy_pressed"]

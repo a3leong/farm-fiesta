@@ -3,7 +3,8 @@ extends UnitState
 var speed: float = 100
 
 var isWalking = false
-var unitOwner
+var unit_owner
+var unit_type
 
 signal unit_collision
 
@@ -12,10 +13,11 @@ func _init():
 	set_as_inactive_state()
 
 # Dev called init function
-func init(initOwner):
-	unitOwner = initOwner
-	$Area2D.init(unitOwner)
-	if unitOwner == UnitOwnerEnum.ENEMY:
+func init(init_owner, init_type):
+	unit_owner = init_owner
+	unit_type = init_type
+	$Area2D.init(unit_owner, init_type)
+	if unit_owner == UnitOwnerEnum.VALUES.ENEMY:
 		$Area2D/AnimatedSprite2D.set_flip_h(true)
 		speed = -speed
 		set_modulate(Color(255, 0, 0))
@@ -34,5 +36,5 @@ func _process(delta: float):
 
 
 func _on_area_2d_area_entered(area):
-	if unitOwner != area.unitOwner:
+	if unit_owner != area.unit_owner:
 		unit_collision.emit($Area2D, area)

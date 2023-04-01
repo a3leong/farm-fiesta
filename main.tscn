@@ -1,10 +1,11 @@
-[gd_scene load_steps=7 format=3 uid="uid://cksvr8m5rm5x3"]
+[gd_scene load_steps=8 format=3 uid="uid://cksvr8m5rm5x3"]
 
 [ext_resource type="PackedScene" uid="uid://dx36xgy83f8vw" path="res://debug_ui.tscn" id="1_3ksjr"]
 [ext_resource type="Script" path="res://main.gd" id="1_rkl1y"]
 [ext_resource type="PackedScene" uid="uid://c1cm7khls3r1w" path="res://classes/Unit/unit.tscn" id="2_gnb1n"]
 [ext_resource type="PackedScene" uid="uid://c6lmx45nhktp" path="res://audio_manager.tscn" id="3_502kr"]
 [ext_resource type="PackedScene" uid="uid://bi2ji4jbpjtyy" path="res://classes/Player/farmer.tscn" id="4_2eqrv"]
+[ext_resource type="PackedScene" uid="uid://dldaqt5rq5ah2" path="res://ui.tscn" id="5_tlqvg"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4if47"]
 size = Vector2(2000, 48)
@@ -12,6 +13,7 @@ size = Vector2(2000, 48)
 [node name="Main" type="Node2D"]
 script = ExtResource("1_rkl1y")
 unitScene = ExtResource("2_gnb1n")
+enemySpawnSpeed = 0.05
 
 [node name="AudioManager" parent="." instance=ExtResource("3_502kr")]
 
@@ -47,6 +49,12 @@ position = Vector2(150, 250)
 position = Vector2(461, 248)
 
 [node name="DebugUI" parent="." instance=ExtResource("1_3ksjr")]
+
+[node name="UI" parent="." instance=ExtResource("5_tlqvg")]
+offset_left = -8.0
+offset_top = 64.0
+offset_right = -8.0
+offset_bottom = 64.0
 
 [node name="Farmer" parent="." instance=ExtResource("4_2eqrv")]
 position = Vector2(152, 264)
