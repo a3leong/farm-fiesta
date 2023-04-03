@@ -12,7 +12,6 @@ enum VALUES {
 # This logic only accounts for RPS, if you add more complexity update this fn
 static func unit_matchup_results(u1_type, u2_type) -> int:
 	if u1_type == u2_type:
-		print("NOBODY WINS")
 		return 0
 	
 	var return_value = -2

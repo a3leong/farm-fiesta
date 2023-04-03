@@ -46,7 +46,10 @@ func _play_animation():
 	match unit_type:
 		UnitTypeEnum.VALUES.ROCK:
 			$Area2D/AnimatedSprite2D.play("rock")
+			$Area2D/CollisionShape2D.shape.set_size(Vector2(11,14))
 		UnitTypeEnum.VALUES.PAPER:
 			$Area2D/AnimatedSprite2D.play("paper")
+			$Area2D/CollisionShape2D.shape.set_size(Vector2(20,17))
 		UnitTypeEnum.VALUES.SCISSORS:
 			$Area2D/AnimatedSprite2D.play("scissors")
+			$Area2D/CollisionShape2D.shape.set_size(Vector2(12,24))

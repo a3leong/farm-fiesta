@@ -8,7 +8,7 @@ var speed = start_speed
 var deacceleration = 1.5
 var minSpeed = 0.5
 
-func _process(delta):
+func _process(_delta):
 	if gradualCounter < counter:
 		gradualCounter += speed
 		if speed > 0.5:
@@ -24,4 +24,4 @@ func _ready():
 	game_variables.player_score_update.connect(_handlePlayerScoreUpdate)
 
 func _handlePlayerScoreUpdate(score):
-	counter = score
+	counter = score * 5
