@@ -1,7 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://dhxr22ekp6ckp"]
+[gd_scene load_steps=5 format=3]
 
-[ext_resource type="Script" path="res://classes/Unit/unit_state_walking.gd" id="1_28cq0"]
-[ext_resource type="Script" path="res://classes/Unit/unit_state_walking_area2d.gd" id="2_q1oxw"]
+[ext_resource type="Script" path="res://classes/Player/Unit/unit_state_walking.gd" id="1_28cq0"]
+[ext_resource type="Script" path="res://classes/Player/Unit/unit_state_walking_area2d.gd" id="2_q1oxw"]
 [ext_resource type="SpriteFrames" uid="uid://by4nbtqky7ixq" path="res://assets/sprite_frames/farmer/unit_state_walking.tres" id="3_cyuve"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_g0t3h"]
