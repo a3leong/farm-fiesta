@@ -1,10 +1,7 @@
-[gd_scene load_steps=9 format=3 uid="uid://r54xaeohdm7q"]
+[gd_scene load_steps=6 format=3 uid="uid://dm6pxtcxtg88q"]
 
-[ext_resource type="Script" path="res://user_typer.gd" id="1_cg2at"]
-[ext_resource type="PackedScene" uid="uid://bi2ji4jbpjtyy" path="res://classes/Player/farmer.tscn" id="2_i4dl7"]
-[ext_resource type="AudioStream" uid="uid://dbr8t3yatiw7n" path="res://assets/audio/type_chit.ogg" id="3_7li61"]
-[ext_resource type="AudioStream" uid="uid://dvl23e74eat5j" path="res://assets/audio/pluck_up.ogg" id="4_jwmvx"]
-[ext_resource type="AudioStream" uid="uid://dt7mncg1kctip" path="res://assets/audio/pluck_down.ogg" id="5_pc01d"]
+[ext_resource type="Script" path="res://classes/Player/player.gd" id="1_wgw2y"]
+[ext_resource type="PackedScene" uid="uid://b2qq7d7hxug4d" path="res://classes/Player/PlayerCharacter/player_character.tscn" id="2_i4dl7"]
 
 [sub_resource type="Animation" id="Animation_sbvuv"]
 length = 0.001
@@ -67,20 +64,10 @@ _data = {
 "exhausted": SubResource("Animation_ks2dh")
 }
 
-[node name="Control" type="Camera2D"]
-script = ExtResource("1_cg2at")
+[node name="Player" type="Node2D"]
+script = ExtResource("1_wgw2y")
 
-[node name="Farmer" parent="." instance=ExtResource("2_i4dl7")]
-
-[node name="TypeChitSFX" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("3_7li61")
-
-[node name="PluckUpSFX" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("4_jwmvx")
-
-[node name="PluckDownSFX" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("5_pc01d")
-pitch_scale = 0.6
+[node name="PlayerCharacter" parent="." instance=ExtResource("2_i4dl7")]
 
 [node name="ExhaustProgressBar" type="ProgressBar" parent="."]
 visible = false
@@ -154,5 +141,8 @@ theme_override_constants/margin_left = 30
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 1, 1, 0.392157)
 text = "Next_word_3"
+
+[node name="UnitSpawnPosition" type="Marker2D" parent="."]
+position = Vector2(40, -80)
 
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]

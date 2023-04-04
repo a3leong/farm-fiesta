@@ -1,0 +1,19 @@
+[gd_scene load_steps=5 format=3 uid="uid://dhejnkdmfcogq"]
+
+[ext_resource type="Script" path="res://globals/AudioManager/audio_manager.gd" id="1_1w7ob"]
+[ext_resource type="AudioStream" uid="uid://dvl23e74eat5j" path="res://assets/audio/pluck_up.ogg" id="2_uh5dy"]
+[ext_resource type="AudioStream" uid="uid://dbr8t3yatiw7n" path="res://assets/audio/type_chit.ogg" id="3_ulm35"]
+[ext_resource type="AudioStream" uid="uid://dt7mncg1kctip" path="res://assets/audio/pluck_down.ogg" id="4_5m11u"]
+
+[node name="AudioManager" type="Node"]
+script = ExtResource("1_1w7ob")
+
+[node name="PluckUp" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_uh5dy")
+
+[node name="TypeChit" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_ulm35")
+
+[node name="PluckDown" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_5m11u")
+pitch_scale = 0.6

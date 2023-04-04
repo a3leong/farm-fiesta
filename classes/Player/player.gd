@@ -1,9 +1,20 @@
 extends Node
+@export var unit_scene: PackedScene = preload("res://classes/Player/Unit/unit.tscn")
 @onready var word_list = get_node("/root/WordList")
+@onready var audio_manager = get_node("/root/AudioManager")
+@export var spawn_throw_force = Vector2(100, 400)
+@export var spawn_throw_variance_y = 300
+@export var spawn_throw_variance_x = 50
 
+signal unit_spawned
+
+var unit_owner: UnitOwnerEnum.VALUES = UnitOwnerEnum.VALUES.PLAYER
 var cw: Array[String] = []
 var word_queue: Array[String] = []
 var cw_index = 0
+
+func set_unit_owner(uo: UnitOwnerEnum.VALUES):
+	unit_owner = uo
 
 func _ready():
 	_load_word()
@@ -35,8 +46,8 @@ func _unhandled_input(event: InputEvent) -> void:
 				_handle_bad_word()
 			else:
 				cw_index += 1
-				$TypeChitSFX.play()
-				$Farmer.pull_item()
+				audio_manager.type_sound()
+				$PlayerCharacter.pull_item()
 		elif event.keycode == KEY_SPACE || event.keycode == KEY_ENTER || event.keycode == KEY_TAB:
 			if cw_index != cw.size():
 				_handle_bad_word()
@@ -64,17 +75,19 @@ func _load_next_cw():
 
 func _handle_word_submit():
 	_load_next_cw()
-	$PluckUpSFX.play()
-	$Farmer.pick_item()
+	audio_manager.pluck_up(1.0)
+	$PlayerCharacter.pick_item()
+	# Pick random unit type for now
+	var unit_type = UnitTypeEnum.VALUES.values()[randi() % UnitTypeEnum.VALUES.size()]
+	spawn_unit(unit_owner, unit_type)
 
 func _handle_bad_word():
 	# Shake the word then disable input for X time
 	_shake_current_word()
-	$Farmer/AnimatedSprite2D.play("balk")
+	$PlayerCharacter/AnimatedSprite2D.play("balk")
 	$AnimationPlayer.play("exhausted")
 	set_process_unhandled_input(false)
-	$PluckDownSFX.play()
-	pass
+	audio_manager.exhaust()
 
 func _shake_current_word():
 	var tween = get_tree().create_tween()
@@ -89,16 +102,36 @@ func _shake_current_word():
 	tween.tween_property($WordContainer/CurrentWord, "position", Vector2(sp.x, sp.y), 0.05)
 	
 	var tween2 = get_tree().create_tween()
-	var sp2: Vector2 = $Farmer.get_position()
-	tween2.tween_property($Farmer, "position", Vector2(sp2.x + 10, sp2.y), 0.05)
-	tween2.tween_property($Farmer, "position", Vector2(sp2.x - 10, sp2.y), 0.05)
-	tween2.tween_property($Farmer, "position", Vector2(sp2.x + 5, sp2.y), 0.05)
-	tween2.tween_property($Farmer, "position", Vector2(sp2.x - 5, sp2.y), 0.05)
-	tween2.tween_property($Farmer, "position", Vector2(sp2.x + 3, sp2.y), 0.05)
-	tween2.tween_property($Farmer, "position", Vector2(sp2.x - 3, sp2.y), 0.05)
-	tween2.tween_property($Farmer, "position", Vector2(sp2.x + 1, sp2.y), 0.05)
-	tween2.tween_property($Farmer, "position", Vector2(sp2.x - 1, sp2.y), 0.05)
+	var sp2: Vector2 = $PlayerCharacter.get_position()
+	tween2.tween_property($PlayerCharacter, "position", Vector2(sp2.x + 10, sp2.y), 0.05)
+	tween2.tween_property($PlayerCharacter, "position", Vector2(sp2.x - 10, sp2.y), 0.05)
+	tween2.tween_property($PlayerCharacter, "position", Vector2(sp2.x + 5, sp2.y), 0.05)
+	tween2.tween_property($PlayerCharacter, "position", Vector2(sp2.x - 5, sp2.y), 0.05)
+	tween2.tween_property($PlayerCharacter, "position", Vector2(sp2.x + 3, sp2.y), 0.05)
+	tween2.tween_property($PlayerCharacter, "position", Vector2(sp2.x - 3, sp2.y), 0.05)
+	tween2.tween_property($PlayerCharacter, "position", Vector2(sp2.x + 1, sp2.y), 0.05)
+	tween2.tween_property($PlayerCharacter, "position", Vector2(sp2.x - 1, sp2.y), 0.05)
 
 func _on_animation_player_animation_finished(anim_name):
-	set_process_unhandled_input(true)
-	
+	if anim_name == "exhausted":
+		set_process_unhandled_input(true)
+		$PlayerCharacter/AnimatedSprite2D.stop()
+		$PlayerCharacter/AnimatedSprite2D.set_animation("pull")
+		
+func _generateRandomPluck2DVector():
+	var xForce = spawn_throw_force.x + randi() % spawn_throw_variance_x
+	var yVariance = randi() % spawn_throw_variance_y
+	var yForce = spawn_throw_force.y + yVariance
+	return Vector2(xForce, yForce)
+
+func spawn_unit(uo: UnitOwnerEnum.VALUES, unit_type: UnitTypeEnum.VALUES):
+	# Let main handle signal connect
+	var spawned_scene = unit_scene.instantiate()
+	var start_position: Vector2 = $UnitSpawnPosition.get_global_position()
+	var pluck_force = _generateRandomPluck2DVector()
+	var pluckSFXPitchScale = ((pluck_force.y - spawn_throw_force.y) / spawn_throw_variance_y * .25) + .75
+	spawned_scene.init(uo, unit_type, $PlayerCharacter.get_global_position().y)
+	spawned_scene.set_state(UnitStateEnum.VALUES.PLUCK, start_position)
+	spawned_scene.call_state(UnitStateEnum.VALUES.PLUCK, "start_pluck", [uo, pluck_force])
+	audio_manager.pluck_up(pluckSFXPitchScale)
+	unit_spawned.emit(spawned_scene)

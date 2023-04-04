@@ -1,21 +1,16 @@
-[gd_scene load_steps=8 format=3 uid="uid://cksvr8m5rm5x3"]
+[gd_scene load_steps=6 format=3 uid="uid://b4h20korx2nls"]
 
 [ext_resource type="PackedScene" uid="uid://dx36xgy83f8vw" path="res://debug_ui.tscn" id="1_3ksjr"]
 [ext_resource type="Script" path="res://main.gd" id="1_rkl1y"]
-[ext_resource type="PackedScene" uid="uid://c1cm7khls3r1w" path="res://classes/Unit/unit.tscn" id="2_gnb1n"]
-[ext_resource type="PackedScene" uid="uid://c6lmx45nhktp" path="res://audio_manager.tscn" id="3_502kr"]
-[ext_resource type="PackedScene" uid="uid://bi2ji4jbpjtyy" path="res://classes/Player/farmer.tscn" id="4_2eqrv"]
-[ext_resource type="PackedScene" uid="uid://dldaqt5rq5ah2" path="res://ui.tscn" id="5_tlqvg"]
+[ext_resource type="PackedScene" uid="uid://b2qq7d7hxug4d" path="res://classes/Player/PlayerCharacter/player_character.tscn" id="4_2eqrv"]
+[ext_resource type="PackedScene" uid="uid://dm6pxtcxtg88q" path="res://classes/Player/player.tscn" id="6_5cs7f"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4if47"]
-size = Vector2(2000, 48)
+size = Vector2(2000, 136)
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_rkl1y")
-unitScene = ExtResource("2_gnb1n")
 enemySpawnSpeed = 800.0
-
-[node name="AudioManager" parent="." instance=ExtResource("3_502kr")]
 
 [node name="EnemyFarmerPickTimer" type="Timer" parent="."]
 
@@ -26,7 +21,7 @@ color = Color(1, 0.721569, 0.717647, 1)
 metadata/_edit_use_anchors_ = true
 
 [node name="Ground" type="StaticBody2D" parent="."]
-position = Vector2(24, 368)
+position = Vector2(16, 280)
 collision_layer = 2
 metadata/_edit_group_ = true
 
@@ -34,39 +29,31 @@ metadata/_edit_group_ = true
 offset_left = -664.0
 offset_top = -56.0
 offset_right = 1336.0
-offset_bottom = -8.0
+offset_bottom = 80.0
 size_flags_horizontal = 4
 color = Color(0, 0.721569, 0.501961, 1)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Ground"]
-position = Vector2(336, -32)
+position = Vector2(336, 12)
 shape = SubResource("RectangleShape2D_4if47")
-
-[node name="PlayerUnitSpawnPosition" type="Marker2D" parent="."]
-position = Vector2(150, 250)
-
-[node name="EnemyUnitSpawnPosition" type="Marker2D" parent="."]
-position = Vector2(461, 248)
 
 [node name="DebugUI" parent="." instance=ExtResource("1_3ksjr")]
 
-[node name="UI" parent="." instance=ExtResource("5_tlqvg")]
-offset_left = -8.0
-offset_top = 64.0
-offset_right = -8.0
-offset_bottom = 64.0
-
-[node name="Farmer" parent="." instance=ExtResource("4_2eqrv")]
-position = Vector2(160, 312)
+[node name="Player" parent="." instance=ExtResource("6_5cs7f")]
+position = Vector2(328, 224)
 
 [node name="EnemyFarmer" parent="." instance=ExtResource("4_2eqrv")]
 modulate = Color(0.835294, 0, 0.0862745, 0.960784)
-position = Vector2(528, 312)
+position = Vector2(736, 16)
 isEnemy = true
 
-[node name="test" type="Marker2D" parent="."]
-position = Vector2(-32, 308)
+[node name="EnemyUnitSpawnPosition" type="Marker2D" parent="."]
+position = Vector2(688, 72)
+
+[node name="Debug location marker" type="Marker2D" parent="."]
+position = Vector2(112, 224)
 
 [connection signal="timeout" from="EnemyFarmerPickTimer" to="." method="_on_enemy_farmer_pick_timer_timeout"]
 [connection signal="debugSpawnEnemyUnit" from="DebugUI" to="." method="_on_debug_ui_debug_spawn_enemy_unit"]
 [connection signal="debugSpawnPlayerUnit" from="DebugUI" to="." method="_on_debug_ui_debug_spawn_player_unit"]
+[connection signal="unit_spawned" from="Player" to="." method="_on_player_unit_spawned"]

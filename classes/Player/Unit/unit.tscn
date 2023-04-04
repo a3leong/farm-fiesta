@@ -1,0 +1,15 @@
+[gd_scene load_steps=4 format=3 uid="uid://c6d8nph30ll17"]
+
+[ext_resource type="Script" path="res://classes/Player/Unit/unit.gd" id="1_d2ap3"]
+[ext_resource type="PackedScene" path="res://classes/Player/Unit/unit_state_walking.tscn" id="2_5jlpt"]
+[ext_resource type="PackedScene" uid="uid://d1diweb4m0010" path="res://classes/Player/Unit/unit_state_pluck.tscn" id="3_3r67g"]
+
+[node name="Unit" type="Node2D"]
+script = ExtResource("1_d2ap3")
+
+[node name="UnitStateWalking" parent="." instance=ExtResource("2_5jlpt")]
+
+[node name="UnitStatePluck" parent="." instance=ExtResource("3_3r67g")]
+
+[connection signal="unit_collision" from="UnitStateWalking" to="." method="_on_unit_state_walking_unit_collision"]
+[connection signal="bounced_twice" from="UnitStatePluck" to="." method="_on_unit_state_pluck_bounced_twice"]

@@ -1,6 +1,6 @@
-[gd_scene load_steps=12 format=3 uid="uid://jrseyta66pwc"]
+[gd_scene load_steps=12 format=3 uid="uid://d1diweb4m0010"]
 
-[ext_resource type="Script" path="res://classes/Unit/unit_state_pluck.gd" id="1_ajuvx"]
+[ext_resource type="Script" path="res://classes/Player/Unit/unit_state_pluck.gd" id="1_ajuvx"]
 [ext_resource type="Texture2D" uid="uid://dqfu4nci5q3o" path="res://assets/sprite_sheets/farmer/scissors/pluck.png" id="2_pfpae"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_8swnn"]

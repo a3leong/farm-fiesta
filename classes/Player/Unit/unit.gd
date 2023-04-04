@@ -2,7 +2,8 @@ extends Node2D
 
 @export var speed = 100
 var floorHeight = 48
-signal unitCollide
+var ground_y_position: float = 0.0
+signal unit_collide
 
 ## A unit wrapper for managing and handling multiple states of a single unit
 ##
@@ -15,12 +16,12 @@ signal unitCollide
 # TODO: Actually figure out how to explicit the enum from another class (probably named?)
 var active_state: UnitStateEnum.VALUES = UnitStateEnum.VALUES.NONE # No init state to keep it explicit
 var unit_owner: UnitOwnerEnum.VALUES = UnitOwnerEnum.VALUES.PLAYER
-
 var unit_type
 
-func init(init_owner: UnitOwnerEnum.VALUES, init_type: UnitTypeEnum.VALUES):
+func init(init_owner: UnitOwnerEnum.VALUES, init_type: UnitTypeEnum.VALUES, init_ground_y_position: float):
 	unit_owner = init_owner
 	unit_type = init_type
+	ground_y_position = init_ground_y_position
 	$UnitStateWalking.init(init_owner, init_type)
 	$UnitStatePluck.init(init_owner, init_type)
 
@@ -41,7 +42,7 @@ func _get_current_position() -> Vector2:
 		UnitStateEnum.VALUES.PLUCK:
 			return $UnitStatePluck/RigidBody2D.position
 	
-	print("No matching state found!")
+	push_error("No matching state found!")
 	return Vector2(0.0, 0.0) # Should not hit this but just in case
 ## set_state()
 ##
@@ -88,14 +89,13 @@ func _set_state_pluck(currentPos: Vector2):
 
 func _on_unit_state_pluck_bounced_twice(globalPosition: Vector2):
 	# We only want the x position, course correct so carrot is actually walking on the ground
-	var floorHeightPos = ProjectSettings.get_setting("display/window/size/viewport_height") - floorHeight
-	set_state(UnitStateEnum.VALUES.WALKING, Vector2(globalPosition.x, floorHeightPos))
+	set_state(UnitStateEnum.VALUES.WALKING, Vector2(globalPosition.x, ground_y_position))
 
 
 func _on_unit_state_walking_unit_collision(owned_unit: Area2D, enemy_unit: Area2D):
 	var fight_result = UnitTypeEnum.unit_matchup_results(owned_unit.unit_type, enemy_unit.unit_type)
 	if owned_unit.unit_owner == UnitOwnerEnum.VALUES.PLAYER:
-		unitCollide.emit(fight_result)
+		unit_collide.emit(fight_result)
 	# 1 means win, 0 and -1 means die
 	if fight_result < 1:	
 		_die()
