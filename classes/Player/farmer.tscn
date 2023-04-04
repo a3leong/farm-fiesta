@@ -8,7 +8,6 @@ scale = Vector2(3, 3)
 script = ExtResource("1_d85vo")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -16)
 sprite_frames = ExtResource("2_mknax")
 animation = &"pick"
-
-[connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]

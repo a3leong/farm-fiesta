@@ -1,6 +1,7 @@
-[gd_resource type="SpriteFrames" load_steps=7 format=3 uid="uid://bvqx66fe8cafh"]
+[gd_resource type="SpriteFrames" load_steps=8 format=3 uid="uid://bvqx66fe8cafh"]
 
 [ext_resource type="Texture2D" uid="uid://dvejru00f6lhc" path="res://assets/farmer-pull.png" id="1_6ioxc"]
+[ext_resource type="Texture2D" uid="uid://bypvj3w03gmc8" path="res://assets/sprite_sheets/farmer/player_character/balk.png" id="1_c8jay"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_cm10s"]
 atlas = ExtResource("1_6ioxc")
@@ -26,6 +27,14 @@ region = Rect2(192, 0, 48, 32)
 animations = [{
 "frames": [{
 "duration": 1.0,
+"texture": ExtResource("1_c8jay")
+}],
+"loop": true,
+"name": &"balk",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_cm10s")
 }, {
 "duration": 1.0,
@@ -42,5 +51,16 @@ animations = [{
 }],
 "loop": false,
 "name": &"pick",
+"speed": 24.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_13krc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_opjnk")
+}],
+"loop": false,
+"name": &"pull",
 "speed": 24.0
 }]

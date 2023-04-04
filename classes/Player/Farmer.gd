@@ -2,9 +2,6 @@ extends Area2D
 
 @export var isEnemy = false
 
-
-var animation_playing = false
-
 func _ready():
 	init()
 
@@ -24,6 +21,3 @@ func pick_item():
 func pull_item():
 	$AnimatedSprite2D.frame = 0
 	$AnimatedSprite2D.play("pull")
-
-func _on_animated_sprite_2d_animation_finished():
-	animation_playing = false

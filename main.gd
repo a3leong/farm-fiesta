@@ -43,20 +43,6 @@ func _input(event: InputEvent):
 			eventAsEnum = UnitTypeEnum.VALUES.ROCK
 		spawn_unit(UnitOwnerEnum.VALUES.PLAYER, eventAsEnum)
 
-#func spawn_unit_OLD(unitOwner):
-#	var spawnedUnit = carrotmanScene.instantiate()
-#	var startPosition
-#	if unitOwner == PLAYER:
-#		startPosition = $PlayerUnitSpawnPosition.position
-#	else:
-#		startPosition = $EnemyUnitSpawnPosition.position
-#
-#	var pluckForceVector = _generateRandomPluck2DVector()
-#	var pluckSFXPitchScale = ((pluckForceVector.y - spawn_throw_force.y) / spawn_throw_variance_y * .25) + .75
-#	spawnedUnit.setPluckState(unitOwner, startPosition, pluckForceVector)
-#	$AudioManager.pluckUp(pluckSFXPitchScale)
-#	add_child(spawnedUnit)
-
 ## _on_unit_collide
 ## Describes to the game runner who the winner of a unit collision is.
 ## The unit management of the fight results is handled by the reporting nodes.

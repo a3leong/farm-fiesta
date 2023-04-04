@@ -24,6 +24,5 @@ func get_word() -> String:
 	if word_list_size == 0:
 		return "error"
 	var random_index = randi() % word_list_size # Returns 0-(N-1) so we're ok on index
-	print(word_array[random_index])
 	return word_array[random_index]
 	

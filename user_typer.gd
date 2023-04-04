@@ -56,9 +56,9 @@ func _load_next_cw():
 	# Load more words and update the label texts
 	_load_word()
 	# TODO: make programmatic, but probably not worth the effort rn
-	$WordContainer/NextWord1.text = word_queue[0]
-	$WordContainer/NextWord2.text = word_queue[1]
-	$WordContainer/NextWord3.text = word_queue[2]
+	$WordContainer/HBoxContainer1/NextWord1.text = word_queue[0]
+	$WordContainer/HBoxContainer2/NextWord2.text = word_queue[1]
+	$WordContainer/HBoxContainer3/NextWord3.text = word_queue[2]
 	
 
 
@@ -69,16 +69,36 @@ func _handle_word_submit():
 
 func _handle_bad_word():
 	# Shake the word then disable input for X time
-	print("handle bad word")
 	_shake_current_word()
+	$Farmer/AnimatedSprite2D.play("balk")
+	$AnimationPlayer.play("exhausted")
 	set_process_unhandled_input(false)
 	$PluckDownSFX.play()
 	pass
 
 func _shake_current_word():
-	$AnimationPlayer.play("shake_word")
+	var tween = get_tree().create_tween()
+	var sp: Vector2 = $WordContainer/CurrentWord.get_position()
+	tween.tween_property($WordContainer/CurrentWord, "position", Vector2(sp.x + 10, sp.y), 0.05)
+	tween.tween_property($WordContainer/CurrentWord, "position", Vector2(sp.x - 10, sp.y), 0.05)
+	tween.tween_property($WordContainer/CurrentWord, "position", Vector2(sp.x + 5, sp.y), 0.05)
+	tween.tween_property($WordContainer/CurrentWord, "position", Vector2(sp.x - 5, sp.y), 0.05)
+	tween.tween_property($WordContainer/CurrentWord, "position", Vector2(sp.x + 3, sp.y), 0.05)
+	tween.tween_property($WordContainer/CurrentWord, "position", Vector2(sp.x - 3, sp.y), 0.05)
+	tween.tween_property($WordContainer/CurrentWord, "position", Vector2(sp.x + 1, sp.y), 0.05)
+	tween.tween_property($WordContainer/CurrentWord, "position", Vector2(sp.x, sp.y), 0.05)
+	
+	var tween2 = get_tree().create_tween()
+	var sp2: Vector2 = $Farmer.get_position()
+	tween2.tween_property($Farmer, "position", Vector2(sp2.x + 10, sp2.y), 0.05)
+	tween2.tween_property($Farmer, "position", Vector2(sp2.x - 10, sp2.y), 0.05)
+	tween2.tween_property($Farmer, "position", Vector2(sp2.x + 5, sp2.y), 0.05)
+	tween2.tween_property($Farmer, "position", Vector2(sp2.x - 5, sp2.y), 0.05)
+	tween2.tween_property($Farmer, "position", Vector2(sp2.x + 3, sp2.y), 0.05)
+	tween2.tween_property($Farmer, "position", Vector2(sp2.x - 3, sp2.y), 0.05)
+	tween2.tween_property($Farmer, "position", Vector2(sp2.x + 1, sp2.y), 0.05)
+	tween2.tween_property($Farmer, "position", Vector2(sp2.x - 1, sp2.y), 0.05)
 
 func _on_animation_player_animation_finished(anim_name):
-	$AnimationPlayer.play("RESET")
 	set_process_unhandled_input(true)
 	

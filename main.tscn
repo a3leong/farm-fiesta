@@ -4,7 +4,7 @@
 [ext_resource type="Script" path="res://main.gd" id="1_rkl1y"]
 [ext_resource type="PackedScene" uid="uid://c1cm7khls3r1w" path="res://classes/Unit/unit.tscn" id="2_gnb1n"]
 [ext_resource type="PackedScene" uid="uid://c6lmx45nhktp" path="res://audio_manager.tscn" id="3_502kr"]
-[ext_resource type="PackedScene" uid="uid://03ubh882kkbh" path="res://classes/Player/farmer.tscn" id="4_2eqrv"]
+[ext_resource type="PackedScene" uid="uid://bi2ji4jbpjtyy" path="res://classes/Player/farmer.tscn" id="4_2eqrv"]
 [ext_resource type="PackedScene" uid="uid://dldaqt5rq5ah2" path="res://ui.tscn" id="5_tlqvg"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4if47"]
