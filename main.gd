@@ -1,23 +1,24 @@
 extends Node2D
-@export var enemySpawnSpeed = 0.25
 @onready var game_variables = get_node("/root/GameVariables")
 @onready var word_list = get_node("/root/WordList")
 @onready var audio_manager = get_node("/root/AudioManager")
 const unitEmitter = preload("res://classes/Player/Unit/unit.tscn")
 
 func _ready():
-	$EnemyFarmerPickTimer.set_wait_time(enemySpawnSpeed)
+	$EnemyFarmerPickTimer.set_wait_time(game_variables.enemy_spawn_speed)
 	$EnemyFarmerPickTimer.start()
+	$EnemyDifficultyTimer.start()
+	$Enemy.set_unit_owner(UnitOwnerEnum.VALUES.ENEMY)
 	randomize() # set random seed
 
 func _on_debug_ui_debug_spawn_enemy_unit():
 	print("debug: spawn enemy unit")
-#	spawn_unit(UnitOwnerEnum.VALUES.ENEMY, UnitTypeEnum.VALUES.ROCK)
+	$Enemy.spawn_unit(UnitTypeEnum.VALUES.ROCK)
 
 
 func _on_debug_ui_debug_spawn_player_unit():
 	print("debug: spawn player unit")
-	$Player.spawn_unit(UnitOwnerEnum.VALUES.PLAYER, UnitTypeEnum.VALUES.ROCK)
+	$Player.spawn_unit(UnitTypeEnum.VALUES.ROCK)
 #	spawn_unit(UnitOwnerEnum.VALUES.PLAYER, UnitTypeEnum.VALUES.ROCK)
 
 
@@ -45,22 +46,35 @@ func _on_debug_ui_debug_spawn_player_unit():
 ## account for fight results from the enemy unit.
 ##
 ## fight_winner - -1 means enemy won, 0 means tie, 1 means player unit won
-func _on_unit_collide(fight_winner: int):
+func _on_unit_collide(_fight_winner: int):
+	game_variables.inc_player_score()
+	## Old system below	
 	# Nothing happens on tie to the scores
-	if fight_winner == 1:
-		game_variables.inc_player_score()
-	elif fight_winner == -1:
-		game_variables.inc_enemy_score()
+#	if fight_winner == 1:
+#		game_variables.inc_player_score()
+#	elif fight_winner == -1:
+#		game_variables.inc_enemy_score()
 
 func _on_enemy_farmer_pick_timer_timeout():
 	# Attempt to randomize to simulate player input
-	var shouldSpawnEnemy = randi() % 2 # Gives random value of either 0 or 1
-	if shouldSpawnEnemy == 0:
-		$EnemyFarmer.pick_item()
+	var spawn_chance = 3 # Spawn chance is spawn_chance-1/spawn_chance
+	var shouldSpawnEnemy = randi() % spawn_chance # Gives random value of either 0-2
+	if shouldSpawnEnemy != 0:
 		var unitTypeInt = randi() % UnitTypeEnum.VALUES.size()
-		print(UnitTypeEnum.VALUES.keys()[unitTypeInt])
-#		spawn_unit(UnitOwnerEnum.VALUES.ENEMY, UnitTypeEnum.VALUES.values()[unitTypeInt])
+		$Enemy.spawn_unit(UnitTypeEnum.VALUES.values()[unitTypeInt])
 
 func _on_player_unit_spawned(spawned_scene):
 	spawned_scene.unit_collide.connect(_on_unit_collide)
 	add_child(spawned_scene)
+
+
+func _on_enemy_unit_spawned(spawned_scene):
+	# For now let's not listen on the unit collide, enemy doesn't fire anyway
+#	spawned_scene.unit_collide.connect(_on_unit_collide)
+	add_child(spawned_scene)
+
+
+func _on_enemy_difficulty_timer_timeout():
+	var new_difficulty: float = max(game_variables.enemy_spawn_speed - 0.25, 0.25)
+	$EnemyFarmerPickTimer.set_wait_time(new_difficulty)
+	game_variables.set_spawn_speed(new_difficulty)

@@ -5,6 +5,7 @@ enum {PLAYER,ENEMY}
 signal bounced_twice
 
 var bounceCount = 0
+var max_bounce = 1
 var emitted = false
 var unit_owner
 var unit_type
@@ -18,7 +19,7 @@ func init(init_owner, init_type):
 	unit_owner = init_owner
 	unit_type = init_type
 	if unit_owner == UnitOwnerEnum.VALUES.ENEMY:
-		set_modulate(Color(255, 0, 0))
+		set_modulate(Color(100, 0, 0))
 
 func set_as_active_state(curPos: Vector2):
 	position = curPos
@@ -41,7 +42,7 @@ func start_pluck(unit_owner_value, thrown_force: Vector2):
 func _on_rigid_body_2d_body_entered(body):
 	if body.name == "Ground":
 		bounceCount += 1
-	if bounceCount > 1 && !emitted:
+	if bounceCount > max_bounce && !emitted:
 		bounced_twice.emit($RigidBody2D.get_global_position())
 		emitted = true
 		queue_free() # TODO: seems a bit like a hard coded solution here

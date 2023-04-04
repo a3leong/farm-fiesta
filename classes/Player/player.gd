@@ -1,4 +1,4 @@
-extends Node
+extends Node2D
 @export var unit_scene: PackedScene = preload("res://classes/Player/Unit/unit.tscn")
 @onready var word_list = get_node("/root/WordList")
 @onready var audio_manager = get_node("/root/AudioManager")
@@ -13,8 +13,12 @@ var cw: Array[String] = []
 var word_queue: Array[String] = []
 var cw_index = 0
 
-func set_unit_owner(uo: UnitOwnerEnum.VALUES):
-	unit_owner = uo
+func set_unit_owner(init_unit_owner: UnitOwnerEnum.VALUES):
+	unit_owner = init_unit_owner
+	if unit_owner == UnitOwnerEnum.VALUES.ENEMY:
+		$WordContainer.hide()
+		set_scale(Vector2(-1.0, 1.0))
+		set_process_unhandled_input(false)
 
 func _ready():
 	_load_word()
@@ -46,8 +50,8 @@ func _unhandled_input(event: InputEvent) -> void:
 				_handle_bad_word()
 			else:
 				cw_index += 1
-				audio_manager.type_sound()
 				$PlayerCharacter.pull_item()
+				audio_manager.type_sound()
 		elif event.keycode == KEY_SPACE || event.keycode == KEY_ENTER || event.keycode == KEY_TAB:
 			if cw_index != cw.size():
 				_handle_bad_word()
@@ -76,10 +80,9 @@ func _load_next_cw():
 func _handle_word_submit():
 	_load_next_cw()
 	audio_manager.pluck_up(1.0)
-	$PlayerCharacter.pick_item()
 	# Pick random unit type for now
 	var unit_type = UnitTypeEnum.VALUES.values()[randi() % UnitTypeEnum.VALUES.size()]
-	spawn_unit(unit_owner, unit_type)
+	spawn_unit(unit_type)
 
 func _handle_bad_word():
 	# Shake the word then disable input for X time
@@ -87,7 +90,7 @@ func _handle_bad_word():
 	$PlayerCharacter/AnimatedSprite2D.play("balk")
 	$AnimationPlayer.play("exhausted")
 	set_process_unhandled_input(false)
-	audio_manager.exhaust()
+	audio_manager.balk()
 
 func _shake_current_word():
 	var tween = get_tree().create_tween()
@@ -124,14 +127,16 @@ func _generateRandomPluck2DVector():
 	var yForce = spawn_throw_force.y + yVariance
 	return Vector2(xForce, yForce)
 
-func spawn_unit(uo: UnitOwnerEnum.VALUES, unit_type: UnitTypeEnum.VALUES):
+func spawn_unit(unit_type: UnitTypeEnum.VALUES):
+	$PlayerCharacter.pick_item() # TODO: Not sure where this should go since enemy unit needs to be able to spawn too
 	# Let main handle signal connect
 	var spawned_scene = unit_scene.instantiate()
 	var start_position: Vector2 = $UnitSpawnPosition.get_global_position()
 	var pluck_force = _generateRandomPluck2DVector()
+
 	var pluckSFXPitchScale = ((pluck_force.y - spawn_throw_force.y) / spawn_throw_variance_y * .25) + .75
-	spawned_scene.init(uo, unit_type, $PlayerCharacter.get_global_position().y)
+	spawned_scene.init(unit_owner, unit_type, $PlayerCharacter.get_global_position().y)
 	spawned_scene.set_state(UnitStateEnum.VALUES.PLUCK, start_position)
-	spawned_scene.call_state(UnitStateEnum.VALUES.PLUCK, "start_pluck", [uo, pluck_force])
+	spawned_scene.call_state(UnitStateEnum.VALUES.PLUCK, "start_pluck", [unit_owner, pluck_force])
 	audio_manager.pluck_up(pluckSFXPitchScale)
 	unit_spawned.emit(spawned_scene)

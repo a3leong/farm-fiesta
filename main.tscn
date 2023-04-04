@@ -1,8 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://b4h20korx2nls"]
+[gd_scene load_steps=5 format=3 uid="uid://b4h20korx2nls"]
 
 [ext_resource type="PackedScene" uid="uid://dx36xgy83f8vw" path="res://debug_ui.tscn" id="1_3ksjr"]
 [ext_resource type="Script" path="res://main.gd" id="1_rkl1y"]
-[ext_resource type="PackedScene" uid="uid://b2qq7d7hxug4d" path="res://classes/Player/PlayerCharacter/player_character.tscn" id="4_2eqrv"]
 [ext_resource type="PackedScene" uid="uid://dm6pxtcxtg88q" path="res://classes/Player/player.tscn" id="6_5cs7f"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4if47"]
@@ -10,7 +9,9 @@ size = Vector2(2000, 136)
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_rkl1y")
-enemySpawnSpeed = 800.0
+
+[node name="EnemyDifficultyTimer" type="Timer" parent="."]
+wait_time = 5.0
 
 [node name="EnemyFarmerPickTimer" type="Timer" parent="."]
 
@@ -40,20 +41,20 @@ shape = SubResource("RectangleShape2D_4if47")
 [node name="DebugUI" parent="." instance=ExtResource("1_3ksjr")]
 
 [node name="Player" parent="." instance=ExtResource("6_5cs7f")]
-position = Vector2(328, 224)
+position = Vector2(160, 224)
 
-[node name="EnemyFarmer" parent="." instance=ExtResource("4_2eqrv")]
-modulate = Color(0.835294, 0, 0.0862745, 0.960784)
-position = Vector2(736, 16)
-isEnemy = true
+[node name="Enemy" parent="." instance=ExtResource("6_5cs7f")]
+position = Vector2(576, 224)
+scale = Vector2(-1, 1)
 
 [node name="EnemyUnitSpawnPosition" type="Marker2D" parent="."]
 position = Vector2(688, 72)
 
 [node name="Debug location marker" type="Marker2D" parent="."]
-position = Vector2(112, 224)
 
+[connection signal="timeout" from="EnemyDifficultyTimer" to="." method="_on_enemy_difficulty_timer_timeout"]
 [connection signal="timeout" from="EnemyFarmerPickTimer" to="." method="_on_enemy_farmer_pick_timer_timeout"]
 [connection signal="debugSpawnEnemyUnit" from="DebugUI" to="." method="_on_debug_ui_debug_spawn_enemy_unit"]
 [connection signal="debugSpawnPlayerUnit" from="DebugUI" to="." method="_on_debug_ui_debug_spawn_player_unit"]
 [connection signal="unit_spawned" from="Player" to="." method="_on_player_unit_spawned"]
+[connection signal="unit_spawned" from="Enemy" to="." method="_on_enemy_unit_spawned"]

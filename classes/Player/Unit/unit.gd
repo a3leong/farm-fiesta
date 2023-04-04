@@ -75,16 +75,16 @@ func _hide_states(exceptions: Dictionary):
 	if !exceptions.has(UnitStateEnum.VALUES.PLUCK):
 		$UnitStatePluck.set_as_inactive_state()
 
-func _set_state_walking(currentPos: Vector2):
+func _set_state_walking(current_pos: Vector2):
 	_hide_states({ UnitStateEnum.VALUES.WALKING: true })
-	var positionToSet = currentPos if currentPos else _get_current_position()
-	$UnitStateWalking.set_as_active_state(positionToSet)
+	var position_to_set = current_pos if current_pos else _get_current_position()
+	$UnitStateWalking.set_as_active_state(position_to_set)
 	$UnitStateWalking.start_walk()
 
-func _set_state_pluck(currentPos: Vector2):
+func _set_state_pluck(current_pos: Vector2):
 	_hide_states({ UnitStateEnum.VALUES.PLUCK: true })
-	var positionToSet = currentPos if currentPos else _get_current_position()
-	$UnitStatePluck.set_as_active_state(positionToSet)
+	var position_to_set = current_pos if current_pos else _get_current_position()
+	$UnitStatePluck.set_as_active_state(position_to_set)
 
 
 func _on_unit_state_pluck_bounced_twice(globalPosition: Vector2):
@@ -93,9 +93,12 @@ func _on_unit_state_pluck_bounced_twice(globalPosition: Vector2):
 
 
 func _on_unit_state_walking_unit_collision(owned_unit: Area2D, enemy_unit: Area2D):
-	var fight_result = UnitTypeEnum.unit_matchup_results(owned_unit.unit_type, enemy_unit.unit_type)
-	if owned_unit.unit_owner == UnitOwnerEnum.VALUES.PLAYER:
-		unit_collide.emit(fight_result)
+	_die()
+	unit_collide.emit(0) # just emit to score for now
+	# TODO: System in place, keep if want to expand on later but for now treat all units as equal
+#	var fight_result = UnitTypeEnum.unit_matchup_results(owned_unit.unit_type, enemy_unit.unit_type)
+#	if owned_unit.unit_owner == UnitOwnerEnum.VALUES.PLAYER:
+#		unit_collide.emit(fight_result)
 	# 1 means win, 0 and -1 means die
-	if fight_result < 1:	
-		_die()
+#	if fight_result < 1:	
+#		_die()
