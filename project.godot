@@ -18,6 +18,7 @@ config/icon="res://icon.svg"
 [autoload]
 
 GameVariables="*res://globals/game_variables.gd"
+WordList="*res://globals/word_list.gd"
 
 [debug]
 

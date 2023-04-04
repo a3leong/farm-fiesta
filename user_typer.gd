@@ -1,7 +1,8 @@
 extends Node
+@onready var word_list = get_node("/root/WordList")
 
-var cw = [] # No typing because static doesn't support nested arrays
-var word_queue = []
+var cw: Array[String] = []
+var word_queue: Array[String] = []
 var cw_index = 0
 
 func _ready():
@@ -12,12 +13,14 @@ func _ready():
 	_update_label()
 	
 func _load_word():
-	word_queue.push_back(["W","O","O","D","L","E"])
+	var new_word: String = word_list.get_word()
+	new_word = new_word.to_upper()
+	word_queue.push_back(new_word)
 
 func _update_label():
 	var front_word = _array_to_str(cw.slice(0, cw_index))
 	var back_word = _array_to_str(cw.slice(cw_index, cw.size()))
-	$CurrentWord.text = "[color=green]" + front_word + "[/color]" + back_word
+	$WordContainer/CurrentWord.text = "[color=green]" + front_word + "[/color]" + back_word
 
 func _array_to_str(word: Array) -> String:
 	return word.reduce(func(accum: String, c: String): return accum + c, "")
@@ -43,10 +46,21 @@ func _unhandled_input(event: InputEvent) -> void:
 		_update_label()
 
 func _load_next_cw():
-	var next_word = word_queue.pop_front()
-	_load_word()
-	cw = next_word
+	# Queue the next word and reset index
+	var next_word: String = word_queue.pop_front()
+	var next_word_array: Array[String] = []
+	for c in next_word:
+		next_word_array.push_back(c)
+	cw = next_word_array
 	cw_index = 0
+	# Load more words and update the label texts
+	_load_word()
+	# TODO: make programmatic, but probably not worth the effort rn
+	$WordContainer/NextWord1.text = word_queue[0]
+	$WordContainer/NextWord2.text = word_queue[1]
+	$WordContainer/NextWord3.text = word_queue[2]
+	
+
 
 func _handle_word_submit():
 	_load_next_cw()

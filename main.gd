@@ -5,6 +5,7 @@ extends Node2D
 @export var spawn_throw_variance_y = 300
 @export var spawn_throw_variance_x = 50
 @onready var game_variables = get_node("/root/GameVariables")
+@onready var word_list = get_node("/root/WordList")
 const unitEmitter = preload("res://classes/Unit/unit.tscn")
 
 func _generateRandomPluck2DVector():
