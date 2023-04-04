@@ -4,10 +4,8 @@
 [ext_resource type="SpriteFrames" uid="uid://bvqx66fe8cafh" path="res://assets/sprite_frames/farmer/player.tres" id="2_mknax"]
 
 [node name="Farmer" type="Area2D"]
-position = Vector2(95, 67)
 scale = Vector2(3, 3)
 script = ExtResource("1_d85vo")
-metadata/_edit_group_ = true
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = ExtResource("2_mknax")
