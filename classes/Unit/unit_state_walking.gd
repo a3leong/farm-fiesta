@@ -8,12 +8,14 @@ var unit_type
 
 signal unit_collision
 
+# TODO: Make the Area2D new scenes with interchangibility since there's most likely going to be less units than skins later on
+
 # System called on script init
 func _init():
 	set_as_inactive_state()
 
 # Dev called init function
-func init(init_owner, init_type):
+func init(init_owner: UnitOwnerEnum.VALUES, init_type: UnitTypeEnum.VALUES):
 	unit_owner = init_owner
 	unit_type = init_type
 	$Area2D.init(unit_owner, init_type)
@@ -24,7 +26,7 @@ func init(init_owner, init_type):
 
 func start_walk():
 	isWalking = true
-	$Area2D/AnimatedSprite2D.play("default")
+	_play_animation()
 	
 func stop_walk():
 	isWalking = false
@@ -38,3 +40,16 @@ func _process(delta: float):
 func _on_area_2d_area_entered(area):
 	if unit_owner != area.unit_owner:
 		unit_collision.emit($Area2D, area)
+
+## Picks correct animation based on unit type
+func _play_animation():
+	match unit_type:
+		UnitTypeEnum.VALUES.ROCK:
+			$Area2D/AnimatedSprite2D.play("rock")
+			$Area2D/CollisionShape2D.shape.set_size(Vector2(11,14))
+		UnitTypeEnum.VALUES.PAPER:
+			$Area2D/AnimatedSprite2D.play("paper")
+			$Area2D/CollisionShape2D.shape.set_size(Vector2(20,17))
+		UnitTypeEnum.VALUES.SCISSORS:
+			$Area2D/AnimatedSprite2D.play("scissors")
+			$Area2D/CollisionShape2D.shape.set_size(Vector2(12,24))

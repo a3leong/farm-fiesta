@@ -1,50 +1,7 @@
-[gd_scene load_steps=9 format=3 uid="uid://bi2ji4jbpjtyy"]
+[gd_scene load_steps=3 format=3 uid="uid://bi2ji4jbpjtyy"]
 
 [ext_resource type="Script" path="res://classes/Player/Farmer.gd" id="1_d85vo"]
-[ext_resource type="Texture2D" uid="uid://dvejru00f6lhc" path="res://assets/farmer-pull.png" id="2_yh040"]
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_cm10s"]
-atlas = ExtResource("2_yh040")
-region = Rect2(0, 0, 48, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_13krc"]
-atlas = ExtResource("2_yh040")
-region = Rect2(48, 0, 48, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_opjnk"]
-atlas = ExtResource("2_yh040")
-region = Rect2(96, 0, 48, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_bphin"]
-atlas = ExtResource("2_yh040")
-region = Rect2(144, 0, 48, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_710u2"]
-atlas = ExtResource("2_yh040")
-region = Rect2(192, 0, 48, 32)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_qdvqh"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_cm10s")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_13krc")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_opjnk")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_bphin")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_710u2")
-}],
-"loop": false,
-"name": &"pick",
-"speed": 24.0
-}]
+[ext_resource type="SpriteFrames" uid="uid://bvqx66fe8cafh" path="res://assets/sprite_frames/farmer/player.tres" id="2_mknax"]
 
 [node name="Farmer" type="Area2D"]
 position = Vector2(95, 67)
@@ -53,9 +10,7 @@ script = ExtResource("1_d85vo")
 metadata/_edit_group_ = true
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-sprite_frames = SubResource("SpriteFrames_qdvqh")
+sprite_frames = ExtResource("2_mknax")
 animation = &"pick"
-frame = 4
-frame_progress = 1.0
 
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]

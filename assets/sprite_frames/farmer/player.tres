@@ -1,0 +1,46 @@
+[gd_resource type="SpriteFrames" load_steps=7 format=3 uid="uid://bvqx66fe8cafh"]
+
+[ext_resource type="Texture2D" uid="uid://dvejru00f6lhc" path="res://assets/farmer-pull.png" id="1_6ioxc"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cm10s"]
+atlas = ExtResource("1_6ioxc")
+region = Rect2(0, 0, 48, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_13krc"]
+atlas = ExtResource("1_6ioxc")
+region = Rect2(48, 0, 48, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_opjnk"]
+atlas = ExtResource("1_6ioxc")
+region = Rect2(96, 0, 48, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bphin"]
+atlas = ExtResource("1_6ioxc")
+region = Rect2(144, 0, 48, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_710u2"]
+atlas = ExtResource("1_6ioxc")
+region = Rect2(192, 0, 48, 32)
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cm10s")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_13krc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_opjnk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bphin")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_710u2")
+}],
+"loop": false,
+"name": &"pick",
+"speed": 24.0
+}]
