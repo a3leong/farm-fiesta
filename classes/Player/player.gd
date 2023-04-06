@@ -28,7 +28,7 @@ func _ready():
 	_update_label()
 	
 func _load_word():
-	var new_word: String = word_list.get_word()
+	var new_word = word_list.get_word()
 	new_word = new_word.to_upper()
 	word_queue.push_back(new_word)
 

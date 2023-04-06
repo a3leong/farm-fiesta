@@ -96,12 +96,12 @@ metadata/_edit_group_ = true
 
 [node name="CurrentWord" type="RichTextLabel" parent="WordContainer"]
 clip_contents = false
-custom_minimum_size = Vector2(150, 30)
+custom_minimum_size = Vector2(50, 30)
 layout_mode = 2
-size_flags_vertical = 4
 theme_override_colors/default_color = Color(1, 1, 1, 1)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 0.709804)
 theme_override_constants/outline_size = 3
+theme_override_font_sizes/normal_font_size = 20
 bbcode_enabled = true
 text = "Test text"
 autowrap_mode = 0

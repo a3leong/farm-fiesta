@@ -58,10 +58,10 @@ func _on_unit_collide(_fight_winner: int):
 func _on_enemy_farmer_pick_timer_timeout():
 	# Attempt to randomize to simulate player input
 	var spawn_chance = 3 # Spawn chance is spawn_chance-1/spawn_chance
-	var shouldSpawnEnemy = randi() % spawn_chance # Gives random value of either 0-2
-	if shouldSpawnEnemy != 0:
-		var unitTypeInt = randi() % UnitTypeEnum.VALUES.size()
-		$Enemy.spawn_unit(UnitTypeEnum.VALUES.values()[unitTypeInt])
+	var should_spawn_enemy = randi() % spawn_chance # Gives random value of either 0-2
+	if should_spawn_enemy != 0:
+		var unit_type_idx = randi() % UnitTypeEnum.VALUES.size()
+		$Enemy.spawn_unit(UnitTypeEnum.VALUES.values()[unit_type_idx])
 
 func _on_player_unit_spawned(spawned_scene):
 	spawned_scene.unit_collide.connect(_on_unit_collide)

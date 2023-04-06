@@ -2,19 +2,21 @@ extends Node
 
 var word_array: Array[String] = []
 var word_list_size = 0 # Is actually the size-1 because 0 index and this is used for access
+const MAX_LENGTH: int = 7
 
 func _init():
 	_load_words()
 	
 func _load_words() -> void:
 	var file = FileAccess.open("res://assets/dictionary/word_list.txt", FileAccess.READ)
-	var word_line
+	var word_line: String
 	
 	# We won't parse any of that data but instead do it on demand and let the calling class handle it
 	while true:
 		word_line = file.get_line()
-		word_array.push_back(word_line)
-		word_list_size += 1
+		if word_line.length() <= MAX_LENGTH:
+			word_array.push_back(word_line)
+			word_list_size += 1
 		if file.eof_reached():
 			break
 	
