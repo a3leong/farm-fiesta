@@ -1,0 +1,32 @@
+[gd_scene load_steps=3 format=3 uid="uid://ddtdb6dyqft6p"]
+
+[ext_resource type="Script" path="res://classes/Player/InputQueue/input_queue.gd" id="1_80isv"]
+[ext_resource type="PackedScene" uid="uid://8jk1g4xtk0lk" path="res://classes/Player/InputQueue/input_sprite.tscn" id="1_onehx"]
+
+[node name="InputQueue" type="HBoxContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -520.0
+offset_bottom = -328.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_80isv")
+
+[node name="InputSprite1" parent="." instance=ExtResource("1_onehx")]
+layout_mode = 2
+
+[node name="InputSprite2" parent="." instance=ExtResource("1_onehx")]
+layout_mode = 2
+
+[node name="InputSprite3" parent="." instance=ExtResource("1_onehx")]
+layout_mode = 2
+
+[node name="InputSprite4" parent="." instance=ExtResource("1_onehx")]
+layout_mode = 2
+
+[node name="InputSprite5" parent="." instance=ExtResource("1_onehx")]
+layout_mode = 2
+
+[node name="InputSprite6" parent="." instance=ExtResource("1_onehx")]
+layout_mode = 2

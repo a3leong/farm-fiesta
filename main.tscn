@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://dx36xgy83f8vw" path="res://debug_ui.tscn" id="1_3ksjr"]
 [ext_resource type="Script" path="res://main.gd" id="1_rkl1y"]
-[ext_resource type="PackedScene" uid="uid://dm6pxtcxtg88q" path="res://classes/Player/player.tscn" id="6_5cs7f"]
+[ext_resource type="PackedScene" uid="uid://csqypv8t0x51y" path="res://classes/Player/player.tscn" id="6_5cs7f"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4if47"]
 size = Vector2(2000, 136)
