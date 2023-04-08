@@ -78,3 +78,14 @@ func _on_enemy_difficulty_timer_timeout():
 	var new_difficulty: float = max(game_variables.enemy_spawn_speed - 0.25, 0.25)
 	$EnemyFarmerPickTimer.set_wait_time(new_difficulty)
 	game_variables.set_spawn_speed(new_difficulty)
+	
+static func _get_key_from_unit_type(unit_type: UnitTypeEnum.VALUES) -> String:
+	if unit_type == UnitTypeEnum.VALUES.ROCK:
+		return "Z"
+	elif unit_type == UnitTypeEnum.VALUES.PAPER:
+		return "X"
+	elif unit_type == UnitTypeEnum.VALUES.SCISSORS:
+		return "C"
+	else:
+		push_error("No unit type recognized")
+		return "-"

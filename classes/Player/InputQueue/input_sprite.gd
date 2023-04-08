@@ -1,9 +1,5 @@
 extends Control
-
-func _ready():
-	$Z.set_visible(false)
-	$X.set_visible(false)
-	$C.set_visible(false)
+class_name InputSprite
 
 func z():
 	$Z.set_visible(true)

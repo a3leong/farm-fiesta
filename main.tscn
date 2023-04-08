@@ -22,7 +22,7 @@ color = Color(1, 0.721569, 0.717647, 1)
 metadata/_edit_use_anchors_ = true
 
 [node name="Ground" type="StaticBody2D" parent="."]
-position = Vector2(16, 280)
+position = Vector2(16, 352)
 collision_layer = 2
 metadata/_edit_group_ = true
 
@@ -41,10 +41,10 @@ shape = SubResource("RectangleShape2D_4if47")
 [node name="DebugUI" parent="." instance=ExtResource("1_3ksjr")]
 
 [node name="Player" parent="." instance=ExtResource("6_5cs7f")]
-position = Vector2(160, 224)
+position = Vector2(160, 296)
 
 [node name="Enemy" parent="." instance=ExtResource("6_5cs7f")]
-position = Vector2(576, 224)
+position = Vector2(576, 296)
 scale = Vector2(-1, 1)
 
 [node name="EnemyUnitSpawnPosition" type="Marker2D" parent="."]

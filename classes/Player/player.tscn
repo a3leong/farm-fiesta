@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://classes/Player/player.gd" id="1_wgw2y"]
 [ext_resource type="PackedScene" uid="uid://b2qq7d7hxug4d" path="res://classes/Player/PlayerCharacter/player_character.tscn" id="2_i4dl7"]
-[ext_resource type="PackedScene" uid="uid://8jk1g4xtk0lk" path="res://classes/Player/InputSprite/input_sprite.tscn" id="3_dubpo"]
+[ext_resource type="PackedScene" uid="uid://ddtdb6dyqft6p" path="res://classes/Player/InputQueue/input_queue.tscn" id="3_0m06e"]
 
 [sub_resource type="Animation" id="Animation_sbvuv"]
 length = 0.001
@@ -33,7 +33,7 @@ tracks/1/keys = {
 
 [sub_resource type="Animation" id="Animation_ks2dh"]
 resource_name = "exhausted"
-length = 0.4
+length = 0.5
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -41,7 +41,7 @@ tracks/0/path = NodePath("ExhaustProgressBar:visible")
 tracks/0/interp = 0
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.4),
+"times": PackedFloat32Array(0, 0.5),
 "transitions": PackedFloat32Array(1e-05, 1),
 "update": 1,
 "values": [true, false]
@@ -53,7 +53,7 @@ tracks/1/path = NodePath("ExhaustProgressBar:value")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.399, 0.4),
+"times": PackedFloat32Array(0, 0.49, 0.5),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 2,
 "values": [0.0, 100.0, 0.0]
@@ -79,14 +79,19 @@ offset_bottom = -15.0
 show_percentage = false
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-speed_scale = 0.75
 libraries = {
 "": SubResource("AnimationLibrary_j3lxh")
 }
 
-[node name="InputSprite" parent="." instance=ExtResource("3_dubpo")]
+[node name="InputQueue" parent="." instance=ExtResource("3_0m06e")]
+offset_left = -64.0
+offset_top = -128.0
+offset_right = 52.0
+offset_bottom = -90.0
 
 [node name="UnitSpawnPosition" type="Marker2D" parent="."]
 position = Vector2(40, -80)
 
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
+[connection signal="correct_input" from="InputQueue" to="." method="_on_input_queue_correct_input"]
+[connection signal="wrong_input" from="InputQueue" to="." method="_on_input_queue_wrong_input"]
