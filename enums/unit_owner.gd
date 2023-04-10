@@ -1,5 +1,6 @@
 class_name UnitOwnerEnum
 enum VALUES {
-	PLAYER,
+	PLAYER1,
+	PLAYER2,
 	ENEMY
 }

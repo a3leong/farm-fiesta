@@ -1,6 +1,7 @@
-[gd_scene load_steps=7 format=3 uid="uid://csqypv8t0x51y"]
+[gd_scene load_steps=8 format=3 uid="uid://csqypv8t0x51y"]
 
 [ext_resource type="Script" path="res://classes/Player/player.gd" id="1_wgw2y"]
+[ext_resource type="PackedScene" uid="uid://c6d8nph30ll17" path="res://classes/Player/Unit/unit.tscn" id="2_cxh0s"]
 [ext_resource type="PackedScene" uid="uid://b2qq7d7hxug4d" path="res://classes/Player/PlayerCharacter/player_character.tscn" id="2_i4dl7"]
 [ext_resource type="PackedScene" uid="uid://ddtdb6dyqft6p" path="res://classes/Player/InputQueue/input_queue.tscn" id="3_0m06e"]
 
@@ -66,16 +67,19 @@ _data = {
 }
 
 [node name="Player" type="Node2D"]
+scale = Vector2(4, 4)
 script = ExtResource("1_wgw2y")
+unit_scene = ExtResource("2_cxh0s")
 
 [node name="PlayerCharacter" parent="." instance=ExtResource("2_i4dl7")]
+scale = Vector2(1, 1)
 
 [node name="ExhaustProgressBar" type="ProgressBar" parent="."]
 visible = false
-offset_left = -39.0
-offset_top = -27.0
-offset_right = 40.0
-offset_bottom = -15.0
+offset_left = -25.6667
+offset_top = -11.0
+offset_right = 9.33333
+offset_bottom = -6.0
 show_percentage = false
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
@@ -84,13 +88,15 @@ libraries = {
 }
 
 [node name="InputQueue" parent="." instance=ExtResource("3_0m06e")]
-offset_left = -64.0
-offset_top = -128.0
-offset_right = 52.0
-offset_bottom = -90.0
+offset_left = -64.75
+offset_top = -58.0
+offset_right = 51.25
+offset_bottom = -20.0
+scale = Vector2(0.5, 0.5)
+metadata/_edit_use_anchors_ = true
 
 [node name="UnitSpawnPosition" type="Marker2D" parent="."]
-position = Vector2(40, -80)
+position = Vector2(17.3333, -23.6667)
 
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
 [connection signal="correct_input" from="InputQueue" to="." method="_on_input_queue_correct_input"]

@@ -16,13 +16,12 @@ wait_time = 5.0
 [node name="EnemyFarmerPickTimer" type="Timer" parent="."]
 
 [node name="Background" type="ColorRect" parent="."]
-offset_right = 640.0
-offset_bottom = 360.0
+custom_minimum_size = Vector2(1280, 720)
 color = Color(1, 0.721569, 0.717647, 1)
 metadata/_edit_use_anchors_ = true
 
 [node name="Ground" type="StaticBody2D" parent="."]
-position = Vector2(16, 352)
+position = Vector2(264, 640)
 collision_layer = 2
 metadata/_edit_group_ = true
 
@@ -39,18 +38,16 @@ position = Vector2(336, 12)
 shape = SubResource("RectangleShape2D_4if47")
 
 [node name="DebugUI" parent="." instance=ExtResource("1_3ksjr")]
+metadata/_edit_use_anchors_ = true
 
 [node name="Player" parent="." instance=ExtResource("6_5cs7f")]
-position = Vector2(160, 296)
+position = Vector2(216, 584)
 
 [node name="Enemy" parent="." instance=ExtResource("6_5cs7f")]
-position = Vector2(576, 296)
-scale = Vector2(-1, 1)
-
-[node name="EnemyUnitSpawnPosition" type="Marker2D" parent="."]
-position = Vector2(688, 72)
+position = Vector2(1104, 584)
 
 [node name="Debug location marker" type="Marker2D" parent="."]
+position = Vector2(268, 512)
 
 [connection signal="timeout" from="EnemyDifficultyTimer" to="." method="_on_enemy_difficulty_timer_timeout"]
 [connection signal="timeout" from="EnemyFarmerPickTimer" to="." method="_on_enemy_farmer_pick_timer_timeout"]

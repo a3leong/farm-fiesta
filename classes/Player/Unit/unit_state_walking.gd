@@ -19,7 +19,7 @@ func init(init_owner: UnitOwnerEnum.VALUES, init_type: UnitTypeEnum.VALUES):
 	unit_owner = init_owner
 	unit_type = init_type
 	$Area2D.init(unit_owner, init_type)
-	if unit_owner == UnitOwnerEnum.VALUES.ENEMY:
+	if unit_owner == UnitOwnerEnum.VALUES.ENEMY || unit_owner == UnitOwnerEnum.VALUES.PLAYER2:
 		$Area2D/AnimatedSprite2D.set_flip_h(true)
 		speed = -speed
 		set_modulate(Color(255, 0, 0))

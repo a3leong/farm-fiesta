@@ -15,7 +15,7 @@ signal unit_collide
 
 # TODO: Actually figure out how to explicit the enum from another class (probably named?)
 var active_state: UnitStateEnum.VALUES = UnitStateEnum.VALUES.NONE # No init state to keep it explicit
-var unit_owner: UnitOwnerEnum.VALUES = UnitOwnerEnum.VALUES.PLAYER
+var unit_owner: UnitOwnerEnum.VALUES = UnitOwnerEnum.VALUES.PLAYER1
 var unit_type
 
 func init(init_owner: UnitOwnerEnum.VALUES, init_type: UnitTypeEnum.VALUES, init_ground_y_position: float):
@@ -92,12 +92,12 @@ func _on_unit_state_pluck_bounced_twice(globalPosition: Vector2):
 	set_state(UnitStateEnum.VALUES.WALKING, Vector2(globalPosition.x, ground_y_position))
 
 
-func _on_unit_state_walking_unit_collision(owned_unit: Area2D, enemy_unit: Area2D):
+func _on_unit_state_walking_unit_collision(_owned_unit: Area2D, _enemy_unit: Area2D):
 	_die()
 	unit_collide.emit(0) # just emit to score for now
 	# TODO: System in place, keep if want to expand on later but for now treat all units as equal
 #	var fight_result = UnitTypeEnum.unit_matchup_results(owned_unit.unit_type, enemy_unit.unit_type)
-#	if owned_unit.unit_owner == UnitOwnerEnum.VALUES.PLAYER:
+#	if owned_unit.unit_owner == UnitOwnerEnum.VALUES.PLAYER1:
 #		unit_collide.emit(fight_result)
 	# 1 means win, 0 and -1 means die
 #	if fight_result < 1:	

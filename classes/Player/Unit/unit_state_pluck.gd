@@ -10,6 +10,8 @@ var emitted = false
 var unit_owner
 var unit_type
 
+# Note: Had to change the scale as an initial setting because setting dynamically makes the RigidBody2D just reset on the next frame
+
 # System called on script init
 func _init():
 	set_as_inactive_state()

@@ -5,11 +5,21 @@ extends Node2D
 const unitEmitter = preload("res://classes/Player/Unit/unit.tscn")
 
 func _ready():
+	$Player.hide()
+	# TODO: This should be player objects job
+	$Player/InputQueue.set_process_input(false)
+	$Enemy.hide()
+	$Enemy/InputQueue.set_process_input(false)
+	randomize() # set random seed
+
+func _start_local_game():
+	$Enemy.set_unit_owner(UnitOwnerEnum.VALUES.PLAYER2)
+
+func _start_cpu_game():	
 	$EnemyFarmerPickTimer.set_wait_time(game_variables.enemy_spawn_speed)
 	$EnemyFarmerPickTimer.start()
 	$EnemyDifficultyTimer.start()
 	$Enemy.set_unit_owner(UnitOwnerEnum.VALUES.ENEMY)
-	randomize() # set random seed
 
 func _on_debug_ui_debug_spawn_enemy_unit():
 	print("debug: spawn enemy unit")
@@ -19,7 +29,7 @@ func _on_debug_ui_debug_spawn_enemy_unit():
 func _on_debug_ui_debug_spawn_player_unit():
 	print("debug: spawn player unit")
 	$Player.spawn_unit(UnitTypeEnum.VALUES.ROCK)
-#	spawn_unit(UnitOwnerEnum.VALUES.PLAYER, UnitTypeEnum.VALUES.ROCK)
+#	spawn_unit(UnitOwnerEnum.VALUES.PLAYER1, UnitTypeEnum.VALUES.ROCK)
 
 
 
@@ -37,7 +47,7 @@ func _on_debug_ui_debug_spawn_player_unit():
 #		else:
 #			print("Error occured, unrecognized input for unit spawn")
 #			eventAsEnum = UnitTypeEnum.VALUES.ROCK
-#		spawn_unit(UnitOwnerEnum.VALUES.PLAYER, eventAsEnum)
+#		spawn_unit(UnitOwnerEnum.VALUES.PLAYER1, eventAsEnum)
 
 ## _on_unit_collide
 ## Describes to the game runner who the winner of a unit collision is.

@@ -6,6 +6,7 @@
 [node name="InputQueue" type="VBoxContainer"]
 offset_right = 116.0
 offset_bottom = 38.0
+pivot_offset = Vector2(58, 20)
 script = ExtResource("1_80isv")
 input_sprite_scene = ExtResource("1_onehx")
 metadata/_edit_group_ = true

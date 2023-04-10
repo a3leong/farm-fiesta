@@ -6,6 +6,7 @@
 
 [node name="Unit" type="Node2D"]
 script = ExtResource("1_d2ap3")
+speed = null
 
 [node name="UnitStateWalking" parent="." instance=ExtResource("2_5jlpt")]
 
