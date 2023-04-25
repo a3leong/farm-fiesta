@@ -1,0 +1,55 @@
+[gd_scene load_steps=3 format=3 uid="uid://ddtdb6dyqft6p"]
+
+[ext_resource type="Script" path="res://classes/Player/InputQueue/input_queue.gd" id="1_80isv"]
+[ext_resource type="PackedScene" uid="uid://8jk1g4xtk0lk" path="res://classes/Player/InputQueue/input_sprite.tscn" id="1_onehx"]
+
+[node name="InputQueue" type="VBoxContainer"]
+offset_right = 116.0
+offset_bottom = 38.0
+pivot_offset = Vector2(58, 20)
+script = ExtResource("1_80isv")
+input_sprite_scene = ExtResource("1_onehx")
+metadata/_edit_group_ = true
+
+[node name="CurrentQueue" type="HBoxContainer" parent="."]
+layout_mode = 2
+metadata/_edit_group_ = true
+
+[node name="InputSprite1" parent="CurrentQueue" instance=ExtResource("1_onehx")]
+layout_mode = 2
+
+[node name="InputSprite2" parent="CurrentQueue" instance=ExtResource("1_onehx")]
+layout_mode = 2
+
+[node name="InputSprite3" parent="CurrentQueue" instance=ExtResource("1_onehx")]
+layout_mode = 2
+
+[node name="InputSprite4" parent="CurrentQueue" instance=ExtResource("1_onehx")]
+layout_mode = 2
+
+[node name="InputSprite5" parent="CurrentQueue" instance=ExtResource("1_onehx")]
+layout_mode = 2
+
+[node name="InputSprite6" parent="CurrentQueue" instance=ExtResource("1_onehx")]
+layout_mode = 2
+
+[node name="NextQueue" type="HBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="InputSprite1" parent="NextQueue" instance=ExtResource("1_onehx")]
+layout_mode = 2
+
+[node name="InputSprite2" parent="NextQueue" instance=ExtResource("1_onehx")]
+layout_mode = 2
+
+[node name="InputSprite3" parent="NextQueue" instance=ExtResource("1_onehx")]
+layout_mode = 2
+
+[node name="InputSprite4" parent="NextQueue" instance=ExtResource("1_onehx")]
+layout_mode = 2
+
+[node name="InputSprite5" parent="NextQueue" instance=ExtResource("1_onehx")]
+layout_mode = 2
+
+[node name="InputSprite6" parent="NextQueue" instance=ExtResource("1_onehx")]
+layout_mode = 2

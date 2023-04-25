@@ -1,0 +1,53 @@
+[gd_resource type="SpriteFrames" load_steps=8 format=3 uid="uid://cjy1uow76f85p"]
+
+[ext_resource type="Texture2D" uid="uid://dqfu4nci5q3o" path="res://assets/sprite_sheets/farmer/scissors/pluck.png" id="1_7cpw3"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_eal82"]
+atlas = ExtResource("1_7cpw3")
+region = Rect2(0, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_twjy0"]
+atlas = ExtResource("1_7cpw3")
+region = Rect2(24, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3gmy1"]
+atlas = ExtResource("1_7cpw3")
+region = Rect2(48, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qs8s8"]
+atlas = ExtResource("1_7cpw3")
+region = Rect2(72, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6lqhc"]
+atlas = ExtResource("1_7cpw3")
+region = Rect2(96, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ylr3j"]
+atlas = ExtResource("1_7cpw3")
+region = Rect2(120, 0, 24, 24)
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_eal82")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_twjy0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3gmy1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qs8s8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6lqhc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ylr3j")
+}],
+"loop": true,
+"name": &"default",
+"speed": 24.0
+}]

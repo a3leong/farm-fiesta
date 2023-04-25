@@ -1,0 +1,32 @@
+[gd_scene load_steps=2 format=3 uid="uid://u2erl11whigm"]
+
+[ext_resource type="Script" path="res://classes/UI/start_screen.gd" id="1_rej2e"]
+
+[node name="StartScreen" type="CenterContainer"]
+custom_minimum_size = Vector2(1280, 720)
+offset_right = 1280.0
+offset_bottom = 720.0
+pivot_offset = Vector2(640, 360)
+size_flags_horizontal = 4
+script = ExtResource("1_rej2e")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="VsCpu" type="Button" parent="VBoxContainer"]
+custom_minimum_size = Vector2(200, 50)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+text = "1 Player
+"
+
+[node name="VsPlayer" type="Button" parent="VBoxContainer"]
+custom_minimum_size = Vector2(200, 50)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+text = "2 Player"
+
+[connection signal="pressed" from="VBoxContainer/VsCpu" to="." method="_on_vs_cpu_pressed"]
+[connection signal="pressed" from="VBoxContainer/VsPlayer" to="." method="_on_vs_player_pressed"]

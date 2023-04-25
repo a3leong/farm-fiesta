@@ -1,63 +1,13 @@
-[gd_scene load_steps=12 format=3 uid="uid://d1diweb4m0010"]
+[gd_scene load_steps=5 format=3 uid="uid://d1diweb4m0010"]
 
 [ext_resource type="Script" path="res://classes/Player/Unit/unit_state_pluck.gd" id="1_ajuvx"]
-[ext_resource type="Texture2D" uid="uid://dqfu4nci5q3o" path="res://assets/sprite_sheets/farmer/scissors/pluck.png" id="2_pfpae"]
+[ext_resource type="SpriteFrames" uid="uid://cjy1uow76f85p" path="res://assets/sprite_frames/unit/pluck/farmer.tres" id="2_xmyrf"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_8swnn"]
 bounce = 0.68
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_eal82"]
-atlas = ExtResource("2_pfpae")
-region = Rect2(0, 0, 24, 24)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_twjy0"]
-atlas = ExtResource("2_pfpae")
-region = Rect2(24, 0, 24, 24)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_3gmy1"]
-atlas = ExtResource("2_pfpae")
-region = Rect2(48, 0, 24, 24)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_qs8s8"]
-atlas = ExtResource("2_pfpae")
-region = Rect2(72, 0, 24, 24)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_6lqhc"]
-atlas = ExtResource("2_pfpae")
-region = Rect2(96, 0, 24, 24)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_ylr3j"]
-atlas = ExtResource("2_pfpae")
-region = Rect2(120, 0, 24, 24)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_pg68l"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_eal82")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_twjy0")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_3gmy1")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_qs8s8")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_6lqhc")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_ylr3j")
-}],
-"loop": true,
-"name": &"default",
-"speed": 24.0
-}]
-
 [sub_resource type="CircleShape2D" id="CircleShape2D_c0vmj"]
-radius = 16.0078
+radius = 16.0
 
 [node name="UnitStatePluck" type="Node2D"]
 script = ExtResource("1_ajuvx")
@@ -70,12 +20,12 @@ contact_monitor = true
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="RigidBody2D"]
 scale = Vector2(2, 2)
-sprite_frames = SubResource("SpriteFrames_pg68l")
+sprite_frames = ExtResource("2_xmyrf")
 frame = 2
 frame_progress = 0.160667
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D"]
-position = Vector2(1.5, 0.5)
+position = Vector2(0, 1)
 shape = SubResource("CircleShape2D_c0vmj")
 
 [connection signal="body_entered" from="RigidBody2D" to="." method="_on_rigid_body_2d_body_entered"]

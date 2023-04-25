@@ -1,0 +1,29 @@
+[gd_scene load_steps=5 format=3 uid="uid://8jk1g4xtk0lk"]
+
+[ext_resource type="Script" path="res://classes/Player/InputQueue/input_sprite.gd" id="1_fndls"]
+[ext_resource type="Texture2D" uid="uid://dqc3hjq1aufsn" path="res://assets/sprite_sheets/inputs/button-left.png" id="5_ol0d4"]
+[ext_resource type="Texture2D" uid="uid://cmhpoosv51grh" path="res://assets/sprite_sheets/inputs/button-middle.png" id="7_2llqh"]
+[ext_resource type="Texture2D" uid="uid://cqtjsyd7oimpr" path="res://assets/sprite_sheets/inputs/button-right.png" id="7_chord"]
+
+[node name="InputSprite" type="Control"]
+z_index = 1
+custom_minimum_size = Vector2(17, 18)
+layout_mode = 3
+anchors_preset = 0
+offset_right = 17.0
+offset_bottom = 18.0
+scale = Vector2(1.5, 1.5)
+script = ExtResource("1_fndls")
+metadata/_edit_group_ = true
+
+[node name="Left" type="Sprite2D" parent="."]
+position = Vector2(8.5, 9)
+texture = ExtResource("5_ol0d4")
+
+[node name="Right" type="Sprite2D" parent="."]
+position = Vector2(8.5, 9)
+texture = ExtResource("7_chord")
+
+[node name="Middle" type="Sprite2D" parent="."]
+position = Vector2(8.5, 9)
+texture = ExtResource("7_2llqh")

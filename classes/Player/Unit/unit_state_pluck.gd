@@ -10,15 +10,18 @@ var emitted = false
 var unit_owner
 var unit_type
 
+# Note: Had to change the scale as an initial setting because setting dynamically makes the RigidBody2D just reset on the next frame
+
 # System called on script init
 func _init():
 	set_as_inactive_state()
 
 # Dev called init function
-func init(init_owner, init_type):
+func init(init_owner, init_type, sf: SpriteFrames):
 	unit_owner = init_owner
 	unit_type = init_type
-	if unit_owner == UnitOwnerEnum.VALUES.ENEMY:
+	$RigidBody2D/AnimatedSprite2D.set_sprite_frames(sf)
+	if unit_owner == UnitOwnerEnum.VALUES.CPU:
 		set_modulate(Color(100, 0, 0))
 
 func set_as_active_state(curPos: Vector2):

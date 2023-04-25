@@ -1,28 +1,27 @@
-[gd_scene load_steps=5 format=3 uid="uid://cq8xdefsxosbq"]
+[gd_scene load_steps=5 format=3 uid="uid://cq06527l8ux48"]
 
 [ext_resource type="Script" path="res://classes/Player/Unit/unit_state_walking.gd" id="1_28cq0"]
 [ext_resource type="Script" path="res://classes/Player/Unit/unit_state_walking_area2d.gd" id="2_q1oxw"]
-[ext_resource type="SpriteFrames" uid="uid://by4nbtqky7ixq" path="res://assets/sprite_frames/farmer/unit_state_walking.tres" id="3_cyuve"]
+[ext_resource type="SpriteFrames" uid="uid://by4nbtqky7ixq" path="res://assets/sprite_frames/unit/walking/farmer.tres" id="3_v2v41"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_g0t3h"]
 resource_local_to_scene = true
-size = Vector2(12, 24)
+size = Vector2(4, 8)
 
 [node name="UnitStateWalking" type="Node2D"]
 scale = Vector2(2, 2)
 script = ExtResource("1_28cq0")
 
-[node name="Area2D" type="Area2D" parent="."]
-position = Vector2(0, -12)
+[node name="UnitStateWalkingArea2D" type="Area2D" parent="."]
 script = ExtResource("2_q1oxw")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Area2D"]
-position = Vector2(0, 12)
-sprite_frames = ExtResource("3_cyuve")
-animation = &"scissors"
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="UnitStateWalkingArea2D"]
+sprite_frames = ExtResource("3_v2v41")
+animation = &"rock"
 offset = Vector2(0, -12)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="UnitStateWalkingArea2D"]
+position = Vector2(0, -9)
 shape = SubResource("RectangleShape2D_g0t3h")
 
-[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
+[connection signal="area_entered" from="UnitStateWalkingArea2D" to="." method="_on_area_2d_area_entered"]
