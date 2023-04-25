@@ -1,0 +1,21 @@
+{
+	"farmer": {
+		"player_character": {
+			"sprite": "res://assets/sprite_frames/farmer/player.tres",
+			"portrait": "res://assets/sprite_frames/farmer/"
+		},
+		"unit": {
+			"walking_state": {
+				"sprite": "res://assets/sprite_frames/farmer/unit_state_walking.tres",
+				"collision": {
+					"rock": [11,14],
+					"paper": [20,17],
+					"scissors": [12,24]
+				}
+			},
+			"pluck_state": {
+				"sprite": "res://assets/sprite_frames/farmer/unit_state_walking.tres",
+			}
+		}
+	}
+}

@@ -17,10 +17,11 @@ func _init():
 	set_as_inactive_state()
 
 # Dev called init function
-func init(init_owner, init_type):
+func init(init_owner, init_type, sf: SpriteFrames):
 	unit_owner = init_owner
 	unit_type = init_type
-	if unit_owner == UnitOwnerEnum.VALUES.ENEMY:
+	$RigidBody2D/AnimatedSprite2D.set_sprite_frames(sf)
+	if unit_owner == UnitOwnerEnum.VALUES.CPU:
 		set_modulate(Color(100, 0, 0))
 
 func set_as_active_state(curPos: Vector2):

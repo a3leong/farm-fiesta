@@ -1,0 +1,40 @@
+[gd_scene load_steps=5 format=3]
+
+[ext_resource type="Texture2D" uid="uid://dpkqfximjjxrv" path="res://assets/sprite_sheets/farmer/portrait/healthbar.png" id="1_b4uts"]
+[ext_resource type="Script" path="res://classes/UI/health_bar.gd" id="1_dgpp8"]
+[ext_resource type="SpriteFrames" uid="uid://bsutxqyltqvx7" path="res://assets/sprite_frames/player_character/portrait/farmer.tres" id="3_m2yny"]
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_0rpji"]
+
+[node name="HealthBar" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_dgpp8")
+metadata/_edit_group_ = true
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="."]
+layout_mode = 0
+offset_left = 41.0
+offset_top = 39.0
+offset_right = 158.0
+offset_bottom = 51.0
+value = 100.0
+fill_mode = 1
+nine_patch_stretch = true
+stretch_margin_left = 2
+stretch_margin_top = 2
+stretch_margin_right = 2
+stretch_margin_bottom = 2
+texture_under = ExtResource("1_b4uts")
+texture_progress = SubResource("CanvasTexture_0rpji")
+
+[node name="Portrait" type="AnimatedSprite2D" parent="."]
+sprite_frames = ExtResource("3_m2yny")
+animation = &"neutral"
+offset = Vector2(32, 32)
+
+[node name="HurtPortraitTimer" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+
+[connection signal="timeout" from="HurtPortraitTimer" to="." method="_on_hurt_portrait_timer_timeout"]

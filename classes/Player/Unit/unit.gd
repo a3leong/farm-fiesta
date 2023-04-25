@@ -13,17 +13,21 @@ signal unit_collide
 ## @tutorial:            http://the/tutorial1/url.com
 ## @tutorial(Tutorial2): http://the/tutorial2/url.com
 
-# TODO: Actually figure out how to explicit the enum from another class (probably named?)
 var active_state: UnitStateEnum.VALUES = UnitStateEnum.VALUES.NONE # No init state to keep it explicit
 var unit_owner: UnitOwnerEnum.VALUES = UnitOwnerEnum.VALUES.PLAYER1
 var unit_type
 
-func init(init_owner: UnitOwnerEnum.VALUES, init_type: UnitTypeEnum.VALUES, init_ground_y_position: float):
+func init(
+	init_owner: UnitOwnerEnum.VALUES,
+	init_type: UnitTypeEnum.VALUES,
+	init_ground_y_position: float,
+	playerResourceLoader: PlayerResourceLoader
+):
 	unit_owner = init_owner
 	unit_type = init_type
 	ground_y_position = init_ground_y_position
-	$UnitStateWalking.init(init_owner, init_type)
-	$UnitStatePluck.init(init_owner, init_type)
+	$UnitStatePluck.init(init_owner, init_type, playerResourceLoader.getUnitPluckFrames())
+	$UnitStateWalking.init(init_owner, init_type, playerResourceLoader.getUnitWalkingFrames())
 
 ## _die()
 ## Play death animation for unit then clean up memory

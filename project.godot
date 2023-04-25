@@ -18,7 +18,6 @@ config/icon="res://icon.svg"
 [autoload]
 
 GameVariables="*res://globals/game_variables.gd"
-WordList="*res://globals/word_list.gd"
 AudioManager="*res://globals/AudioManager/audio_manager.tscn"
 
 [debug]

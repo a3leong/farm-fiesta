@@ -55,7 +55,7 @@ func _set_input_sprite(unit_type: UnitTypeEnum.VALUES, new_input_sprite: InputSp
 #			else:
 #				new_input_sprite.z()
 		UnitTypeEnum.VALUES.PAPER:
-			new_input_sprite.down()
+			new_input_sprite.middle()
 #			if unit_owner == UnitOwnerEnum.VALUES.PLAYER2:
 #				new_input_sprite.down()
 #			else:

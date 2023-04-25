@@ -7,5 +7,5 @@ func pluck_up(pitch_scale):
 func balk():
 	$Balk.play()
 
-func type_sound():
-	$TypeChit.play()
+func hurt():
+	$Hurt.play()

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://pndtilr6sg1r"
-path="res://.godot/imported/button-c.png-9728316b9df723023146978084b5e3d8.ctex"
+uid="uid://dpkqfximjjxrv"
+path="res://.godot/imported/healthbar.png-461417bee2a50cb0003d167109e64168.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprite_sheets/inputs/button-c.png"
-dest_files=["res://.godot/imported/button-c.png-9728316b9df723023146978084b5e3d8.ctex"]
+source_file="res://assets/sprite_sheets/farmer/portrait/healthbar.png"
+dest_files=["res://.godot/imported/healthbar.png-461417bee2a50cb0003d167109e64168.ctex"]
 
 [params]
 

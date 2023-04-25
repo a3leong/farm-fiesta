@@ -1,0 +1,73 @@
+[gd_resource type="SpriteFrames" load_steps=11 format=3 uid="uid://51tn0axnsufp"]
+
+[ext_resource type="Texture2D" uid="uid://bqr1lgtjsojud" path="res://assets/sprite_sheets/racoon/portrait/hurt.png" id="1_mkw04"]
+[ext_resource type="Texture2D" uid="uid://dt3lmi0h87aux" path="res://assets/sprite_sheets/racoon/portrait/neutral.png" id="2_sr3pf"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u0mpr"]
+atlas = ExtResource("1_mkw04")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_54vxx"]
+atlas = ExtResource("1_mkw04")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7bf1d"]
+atlas = ExtResource("1_mkw04")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uljn3"]
+atlas = ExtResource("1_mkw04")
+region = Rect2(192, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nf33h"]
+atlas = ExtResource("2_sr3pf")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qqipw"]
+atlas = ExtResource("2_sr3pf")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_iw70k"]
+atlas = ExtResource("2_sr3pf")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gpdif"]
+atlas = ExtResource("2_sr3pf")
+region = Rect2(192, 0, 64, 64)
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u0mpr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_54vxx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7bf1d")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uljn3")
+}],
+"loop": true,
+"name": &"hurt",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nf33h")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qqipw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_iw70k")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gpdif")
+}],
+"loop": true,
+"name": &"neutral",
+"speed": 5.0
+}]
