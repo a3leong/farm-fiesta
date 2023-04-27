@@ -1,3 +1,4 @@
+class_name Player
 extends Node2D
 @export var unit_scene: PackedScene
 @onready var audio_manager = get_node("/root/AudioManager")
@@ -8,7 +9,7 @@ extends Node2D
 signal unit_spawned
 
 var unit_owner: UnitOwnerEnum.VALUES = UnitOwnerEnum.VALUES.PLAYER1
-var playerResourceLoader: PlayerResourceLoader = PlayerResourceLoader.new()
+var player_resource_loader: PlayerResourceLoader
 
 #######################
 # Public fns
@@ -16,11 +17,12 @@ var playerResourceLoader: PlayerResourceLoader = PlayerResourceLoader.new()
 func get_unit_owner() -> UnitOwnerEnum.VALUES:
 	return unit_owner
 
-func init(init_unit_owner: UnitOwnerEnum.VALUES, skin: String) -> void:
+func init(init_unit_owner: UnitOwnerEnum.VALUES, prl: PlayerResourceLoader) -> void:
 	show()
+	player_resource_loader = prl
 	set_unit_owner(init_unit_owner)
 	# Frames will load on init and be available to pass on demand
-	playerResourceLoader.init(skin)
+	$PlayerCharacter.init(player_resource_loader)
 
 func reset_player():
 	# No need to call init since main will call init again
@@ -41,7 +43,7 @@ func set_unit_owner(init_unit_owner: UnitOwnerEnum.VALUES):
 		set_scale(Vector2(-old_scale.x, old_scale.y))
 
 func spawn_unit(unit_type: UnitTypeEnum.VALUES):
-	$PlayerCharacter.pick_item() # TODO: Not sure where this should go since enemy unit needs to be able to spawn too
+	$PlayerCharacter.pick() # TODO: Not sure where this should go since enemy unit needs to be able to spawn too
 	# Let main handle signal connect
 	var spawned_scene = unit_scene.instantiate()
 	var start_position: Vector2 = $UnitSpawnPosition.get_global_position()
@@ -49,7 +51,7 @@ func spawn_unit(unit_type: UnitTypeEnum.VALUES):
 	var pluck_force = _generateRandomPluck2DVector()
 	
 	var pluckSFXPitchScale = ((pluck_force.y - spawn_throw_force.y) / spawn_throw_variance_y * .25) + .75
-	spawned_scene.init(unit_owner, unit_type, $PlayerCharacter.get_global_position().y, playerResourceLoader)
+	spawned_scene.init(unit_owner, unit_type, $PlayerCharacter.get_global_position().y, player_resource_loader)
 	spawned_scene.set_state(UnitStateEnum.VALUES.PLUCK, start_position)
 	spawned_scene.call_state(UnitStateEnum.VALUES.PLUCK, "start_pluck", [unit_owner, pluck_force])
 	audio_manager.pluck_up(pluckSFXPitchScale)
@@ -68,8 +70,8 @@ func _generateRandomPluck2DVector():
 func _on_animation_player_animation_finished(anim_name):
 	if anim_name == "exhausted":
 		$InputQueue.set_process_input(true)
-		$PlayerCharacter/AnimatedSprite2D.stop()
-		$PlayerCharacter/AnimatedSprite2D.set_animation("pick")
+		$PlayerCharacter.stop()
+		$PlayerCharacter.set_pick()
 
 func _shake_animation():
 	var tween = get_tree().create_tween()
@@ -98,6 +100,6 @@ func _on_input_queue_wrong_input():
 	# Shake the letter and character then disable input for X time
 	_shake_animation()
 	$InputQueue.set_process_input(false)
-	$PlayerCharacter/AnimatedSprite2D.play("balk")
+	$PlayerCharacter.balk()
 	$AnimationPlayer.play("exhausted")
 	audio_manager.balk()

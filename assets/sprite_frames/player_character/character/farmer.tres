@@ -52,15 +52,4 @@ animations = [{
 "loop": false,
 "name": &"pick",
 "speed": 24.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_13krc")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_opjnk")
-}],
-"loop": false,
-"name": &"pull",
-"speed": 24.0
 }]

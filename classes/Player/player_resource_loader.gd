@@ -4,7 +4,7 @@ const RESOURCE_PREFIX: String = "res://assets/sprite_frames"
 
 const PATHS = {
 	"player": {
-		"character": RESOURCE_PREFIX + "/player_character/portrait/",
+		"character": RESOURCE_PREFIX + "/player_character/character/",
 		"portrait": RESOURCE_PREFIX + "/player_character/portrait/"
 	},
 	"unit": {

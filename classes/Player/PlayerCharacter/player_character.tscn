@@ -1,7 +1,7 @@
-[gd_scene load_steps=3 format=3]
+[gd_scene load_steps=3 format=3 uid="uid://1qmin6v8dmh3"]
 
 [ext_resource type="Script" path="res://classes/Player/PlayerCharacter/player_character.gd" id="1_lif28"]
-[ext_resource type="SpriteFrames" uid="uid://bvqx66fe8cafh" path="res://assets/sprite_frames/player_character/character/farmer.tres" id="2_sypdp"]
+[ext_resource type="SpriteFrames" uid="uid://dr14ekrh3vaoq" path="res://assets/sprite_frames/player_character/character/racoon.tres" id="2_d10wd"]
 
 [node name="PlayerCharacter" type="Area2D"]
 scale = Vector2(3, 3)
@@ -9,5 +9,5 @@ script = ExtResource("1_lif28")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -16)
-sprite_frames = ExtResource("2_sypdp")
+sprite_frames = ExtResource("2_d10wd")
 animation = &"pick"

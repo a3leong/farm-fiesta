@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://classes/Player/Unit/unit_state_walking.gd" id="1_28cq0"]
 [ext_resource type="Script" path="res://classes/Player/Unit/unit_state_walking_area2d.gd" id="2_q1oxw"]
-[ext_resource type="SpriteFrames" uid="uid://by4nbtqky7ixq" path="res://assets/sprite_frames/unit/walking/farmer.tres" id="3_v2v41"]
+[ext_resource type="SpriteFrames" uid="uid://cs80n2hugdvdv" path="res://assets/sprite_frames/unit/walking/racoon.tres" id="3_3m831"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_g0t3h"]
 resource_local_to_scene = true
@@ -16,8 +16,10 @@ script = ExtResource("1_28cq0")
 script = ExtResource("2_q1oxw")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="UnitStateWalkingArea2D"]
-sprite_frames = ExtResource("3_v2v41")
-animation = &"rock"
+sprite_frames = ExtResource("3_3m831")
+animation = &"scissors"
+frame = 1
+frame_progress = 0.874706
 offset = Vector2(0, -12)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="UnitStateWalkingArea2D"]

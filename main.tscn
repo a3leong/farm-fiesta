@@ -6,7 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://ki1mjstwnuh4" path="res://classes/PlayerLoseArea/player_lose_area.tscn" id="5_q871k"]
 [ext_resource type="PackedScene" uid="uid://slqvt4f3lpqf" path="res://classes/UI/game_over_screen.tscn" id="6_1y38w"]
 [ext_resource type="PackedScene" uid="uid://csqypv8t0x51y" path="res://classes/Player/player.tscn" id="6_5cs7f"]
-[ext_resource type="PackedScene" path="res://classes/UI/health_bar.tscn" id="7_wpibc"]
+[ext_resource type="PackedScene" uid="uid://bjtcuspxk4pgs" path="res://classes/UI/health_bar.tscn" id="7_wpibc"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4if47"]
 size = Vector2(2000, 136)

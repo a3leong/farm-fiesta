@@ -1,0 +1,108 @@
+[gd_resource type="SpriteFrames" load_steps=14 format=3 uid="uid://cs80n2hugdvdv"]
+
+[ext_resource type="Texture2D" uid="uid://cke6y1h8lx067" path="res://assets/sprite_sheets/racoon/fish-walk-Sheet.png" id="1_ggq11"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ce2x7"]
+atlas = ExtResource("1_ggq11")
+region = Rect2(0, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nv5wt"]
+atlas = ExtResource("1_ggq11")
+region = Rect2(24, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tsbvo"]
+atlas = ExtResource("1_ggq11")
+region = Rect2(48, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i1bf5"]
+atlas = ExtResource("1_ggq11")
+region = Rect2(72, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_542a1"]
+atlas = ExtResource("1_ggq11")
+region = Rect2(0, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_02qbr"]
+atlas = ExtResource("1_ggq11")
+region = Rect2(0, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_n2qmv"]
+atlas = ExtResource("1_ggq11")
+region = Rect2(24, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3y6vw"]
+atlas = ExtResource("1_ggq11")
+region = Rect2(48, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rfmuo"]
+atlas = ExtResource("1_ggq11")
+region = Rect2(72, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6el0p"]
+atlas = ExtResource("1_ggq11")
+region = Rect2(24, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m5use"]
+atlas = ExtResource("1_ggq11")
+region = Rect2(48, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e25ac"]
+atlas = ExtResource("1_ggq11")
+region = Rect2(72, 0, 24, 24)
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ce2x7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nv5wt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tsbvo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_i1bf5")
+}],
+"loop": true,
+"name": &"paper",
+"speed": 6.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_542a1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_02qbr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_n2qmv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3y6vw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rfmuo")
+}],
+"loop": true,
+"name": &"rock",
+"speed": 6.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_542a1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6el0p")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_m5use")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_e25ac")
+}],
+"loop": true,
+"name": &"scissors",
+"speed": 6.0
+}]

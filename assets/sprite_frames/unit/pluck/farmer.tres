@@ -1,6 +1,23 @@
-[gd_resource type="SpriteFrames" load_steps=8 format=3 uid="uid://cjy1uow76f85p"]
+[gd_resource type="SpriteFrames" load_steps=13 format=3 uid="uid://cjy1uow76f85p"]
 
+[ext_resource type="Texture2D" uid="uid://yvnultyxhkkj" path="res://assets/sprite_sheets/farmer/paper/pluck.png" id="1_0afaq"]
 [ext_resource type="Texture2D" uid="uid://dqfu4nci5q3o" path="res://assets/sprite_sheets/farmer/scissors/pluck.png" id="1_7cpw3"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vamiv"]
+atlas = ExtResource("1_0afaq")
+region = Rect2(0, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kkoqf"]
+atlas = ExtResource("1_0afaq")
+region = Rect2(24, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c0fuj"]
+atlas = ExtResource("1_0afaq")
+region = Rect2(48, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ob5dx"]
+atlas = ExtResource("1_0afaq")
+region = Rect2(72, 0, 24, 24)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_eal82"]
 atlas = ExtResource("1_7cpw3")
@@ -30,6 +47,23 @@ region = Rect2(120, 0, 24, 24)
 animations = [{
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_vamiv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kkoqf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c0fuj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ob5dx")
+}],
+"loop": true,
+"name": &"paper",
+"speed": 12.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_eal82")
 }, {
 "duration": 1.0,
@@ -48,6 +82,6 @@ animations = [{
 "texture": SubResource("AtlasTexture_ylr3j")
 }],
 "loop": true,
-"name": &"default",
+"name": &"scissors",
 "speed": 24.0
 }]

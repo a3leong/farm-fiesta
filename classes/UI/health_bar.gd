@@ -9,7 +9,9 @@ var unit_owner: UnitOwnerEnum.VALUES
 ##############
 # Public fns
 #############
-func init(the_unit_owner: UnitOwnerEnum.VALUES):
+func init(the_unit_owner: UnitOwnerEnum.VALUES, prl: PlayerResourceLoader):
+	$Portrait.set_sprite_frames(prl.sf_player_portrait)
+	neutral()	
 	unit_owner = the_unit_owner
 	# Connect signals from globals
 	if unit_owner == UnitOwnerEnum.VALUES.PLAYER1:
@@ -31,9 +33,7 @@ func neutral():
 # Overloaded fns
 ###############
 func _ready():
-
 	init_position = $Portrait.get_position()
-	$Portrait.play("neutral")
 
 ######################
 # Private fns
@@ -65,4 +65,4 @@ func _handleHealthUpdate(new_health: int):
 	$TextureProgressBar.set_value(new_health)
 
 func _on_hurt_portrait_timer_timeout():
-	$Portrait.play("neutral")
+	neutral()

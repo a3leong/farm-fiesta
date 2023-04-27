@@ -21,8 +21,8 @@ contact_monitor = true
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="RigidBody2D"]
 scale = Vector2(2, 2)
 sprite_frames = ExtResource("2_xmyrf")
-frame = 2
-frame_progress = 0.160667
+animation = &"scissors"
+frame_progress = 0.453243
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D"]
 position = Vector2(0, 1)

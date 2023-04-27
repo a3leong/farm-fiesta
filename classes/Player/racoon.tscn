@@ -1,9 +1,8 @@
-[gd_scene load_steps=8 format=3 uid="uid://csqypv8t0x51y"]
+[gd_scene load_steps=7 format=3 uid="uid://begtpciet27yr"]
 
-[ext_resource type="Script" path="res://classes/Player/player.gd" id="1_wgw2y"]
-[ext_resource type="PackedScene" uid="uid://c6d8nph30ll17" path="res://classes/Player/Unit/unit.tscn" id="2_cxh0s"]
-[ext_resource type="PackedScene" uid="uid://1qmin6v8dmh3" path="res://classes/Player/PlayerCharacter/player_character.tscn" id="2_i4dl7"]
-[ext_resource type="PackedScene" uid="uid://ddtdb6dyqft6p" path="res://classes/Player/InputQueue/input_queue.tscn" id="3_0m06e"]
+[ext_resource type="Script" path="res://classes/Player/player.gd" id="1_8fl3e"]
+[ext_resource type="PackedScene" uid="uid://1qmin6v8dmh3" path="res://classes/Player/PlayerCharacter/player_character.tscn" id="1_i8ssn"]
+[ext_resource type="PackedScene" uid="uid://ddtdb6dyqft6p" path="res://classes/Player/InputQueue/input_queue.tscn" id="2_6y2qj"]
 
 [sub_resource type="Animation" id="Animation_sbvuv"]
 length = 0.001
@@ -66,13 +65,10 @@ _data = {
 "exhausted": SubResource("Animation_ks2dh")
 }
 
-[node name="Player" type="Node2D"]
-scale = Vector2(4, 4)
-script = ExtResource("1_wgw2y")
-unit_scene = ExtResource("2_cxh0s")
+[node name="Racoon" type="Node2D"]
+script = ExtResource("1_8fl3e")
 
-[node name="PlayerCharacter" parent="." instance=ExtResource("2_i4dl7")]
-scale = Vector2(1, 1)
+[node name="PlayerCharacter" parent="." instance=ExtResource("1_i8ssn")]
 
 [node name="ExhaustProgressBar" type="ProgressBar" parent="."]
 visible = false
@@ -87,17 +83,14 @@ libraries = {
 "": SubResource("AnimationLibrary_j3lxh")
 }
 
-[node name="InputQueue" parent="." instance=ExtResource("3_0m06e")]
-offset_left = -64.75
-offset_top = -58.0
-offset_right = 51.25
-offset_bottom = -20.0
-scale = Vector2(0.5, 0.5)
-metadata/_edit_use_anchors_ = true
+[node name="InputQueue" parent="." instance=ExtResource("2_6y2qj")]
+offset_left = -61.0
+offset_top = -141.0
+offset_right = 61.0
+offset_bottom = -101.0
 
 [node name="UnitSpawnPosition" type="Marker2D" parent="."]
-position = Vector2(17.3333, -23.6667)
+position = Vector2(15, -92)
 
-[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
 [connection signal="correct_input" from="InputQueue" to="." method="_on_input_queue_correct_input"]
 [connection signal="wrong_input" from="InputQueue" to="." method="_on_input_queue_wrong_input"]

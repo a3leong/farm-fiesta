@@ -3,6 +3,9 @@ extends Node2D
 @onready var audio_manager = get_node("/root/AudioManager")
 const unitEmitter = preload("res://classes/Player/Unit/unit.tscn")
 
+var p1_resource_loader: PlayerResourceLoader = PlayerResourceLoader.new()
+var p2_resource_loader: PlayerResourceLoader = PlayerResourceLoader.new()
+
 #################
 # Init and starting fns
 #################
@@ -11,6 +14,9 @@ func _ready():
 	$Enemy.hide()
 	$HealthBars.hide()
 	$UI/GameOverScreen.hide()
+	# TODO: Let players pick this
+	p1_resource_loader.init(PlayerResourceLoader.SKINS.farmer)
+	p2_resource_loader.init(PlayerResourceLoader.SKINS.racoon)
 	randomize() # set random seed
 
 
@@ -18,24 +24,25 @@ func _ready():
 # Handler fns
 ##################
 func _start_2_player_game():
+
 	$HealthBars.show()
-	$HealthBars/PlayerHealthBar.init(UnitOwnerEnum.VALUES.PLAYER1)
-	$HealthBars/EnemyHealthBar.init(UnitOwnerEnum.VALUES.PLAYER2)
+	$HealthBars/PlayerHealthBar.init(UnitOwnerEnum.VALUES.PLAYER1, p1_resource_loader)
+	$HealthBars/EnemyHealthBar.init(UnitOwnerEnum.VALUES.CPU, p2_resource_loader)
 	$UI/StartScreen.hide()
 	$PlayerLoseArea.set_unit_owner(UnitOwnerEnum.VALUES.PLAYER1)
-	$Player.init(UnitOwnerEnum.VALUES.PLAYER1, PlayerResourceLoader.SKINS.farmer)
-	$Enemy.init(UnitOwnerEnum.VALUES.PLAYER2, PlayerResourceLoader.SKINS.farmer)
+	$Player.init(UnitOwnerEnum.VALUES.PLAYER1, p1_resource_loader)
+	$Enemy.init(UnitOwnerEnum.VALUES.PLAYER2, p2_resource_loader)
 	$EnemyLoseArea.set_unit_owner(UnitOwnerEnum.VALUES.PLAYER2)
 	
 
 func _start_cpu_game():
 	$HealthBars.show()
-	$HealthBars/PlayerHealthBar.init(UnitOwnerEnum.VALUES.PLAYER1)
-	$HealthBars/EnemyHealthBar.init(UnitOwnerEnum.VALUES.CPU)
+	$HealthBars/PlayerHealthBar.init(UnitOwnerEnum.VALUES.PLAYER1, p1_resource_loader)
+	$HealthBars/EnemyHealthBar.init(UnitOwnerEnum.VALUES.CPU, p2_resource_loader)
 	$UI/StartScreen.hide()
-	$Player.init(UnitOwnerEnum.VALUES.PLAYER1, PlayerResourceLoader.SKINS.farmer)
+	$Player.init(UnitOwnerEnum.VALUES.PLAYER1, p1_resource_loader)
 	$PlayerLoseArea.set_unit_owner(UnitOwnerEnum.VALUES.PLAYER1)
-	$Enemy.init(UnitOwnerEnum.VALUES.CPU, PlayerResourceLoader.SKINS.farmer)
+	$Enemy.init(UnitOwnerEnum.VALUES.CPU, p2_resource_loader)
 	$EnemyLoseArea.set_unit_owner(UnitOwnerEnum.VALUES.CPU)
 	# Set some cpu specific stuff
 	$EnemyFarmerPickTimer.set_wait_time(game_variables.enemy_spawn_speed)

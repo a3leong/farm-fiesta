@@ -34,7 +34,8 @@ func set_as_inactive_state():
 	call_deferred("set_process_mode", ProcessMode.PROCESS_MODE_DISABLED)
 
 func start_pluck(unit_owner_value, thrown_force: Vector2):
-	$RigidBody2D/AnimatedSprite2D.play("default")
+	_play_animation()
+	$RigidBody2D/AnimatedSprite2D.play(UnitTypeEnum.VALUES.keys()[unit_type])
 	
 	if unit_owner_value == ENEMY:
 		$RigidBody2D/AnimatedSprite2D.set_flip_h(true)
@@ -50,3 +51,11 @@ func _on_rigid_body_2d_body_entered(body):
 		emitted = true
 		queue_free() # TODO: seems a bit like a hard coded solution here
 
+func _play_animation():
+	match unit_type:
+		UnitTypeEnum.VALUES.ROCK:
+			$RigidBody2D/AnimatedSprite2D.play("rock")
+		UnitTypeEnum.VALUES.PAPER:
+			$RigidBody2D/AnimatedSprite2D.play("paper")
+		UnitTypeEnum.VALUES.SCISSORS:
+			$RigidBody2D/AnimatedSprite2D.play("scissors")
